@@ -12,7 +12,7 @@
 
 ![Whole Year Uposatha Calendar](img_Upcal_Whole_Year_Uposatha_Calendar_IOS.jpeg)
 
-+ Can use GPS to update location or manually type in location data in **Upcal_Setting**.
++ Can use GPS to update location automatically or fill in location data manually in **Upcal_Setting**.
 
 ## How To Install
 
@@ -97,7 +97,7 @@ If you haven't used Scriptable app before, here is a quick guide:
 > + To **delete** a script file: tap & hold, select **Delete** in the pop up menu.
 
 ## 3. Update Latitude and Longitude
-Dawn time calculation function needs location data. You can use GPS to automatically update location data or type in manually:
+Dawn time calculation function needs location data. You can use GPS to automatically update location data or fill in manually:
 
 ### Fill in location manually
 

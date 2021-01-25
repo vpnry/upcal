@@ -7,7 +7,7 @@ Upcal - Uposatha calendar and dawn time
 
 + Source code files are in the [docs](https://github.com/vpnry/upcal/docs).
 
-+ Show calculated *Myanmar* uposatha dates for the current month & dawn time for the current date
++ It shows calculated **Myanmar uposatha dates** for the current device month & dawn time for the current date in the new widget on your iPhone, iPad home screen.
 
 ![Upcal_Uposatha_Calendar_IOS](docs/img_Upcal_Uposatha_Calendar_IOS.jpeg)
 
@@ -15,6 +15,7 @@ Upcal - Uposatha calendar and dawn time
 
 ![Whole Year Uposatha Calendar](docs/img_Upcal_Whole_Year_Uposatha_Calendar_IOS.jpeg)
 
++ Can use GPS to update location automatically or fill in location data manually in **Upcal_Setting**.
 
 + For Modern Myanmar Calendarical Calculations, see: [https://yan9a.github.io/mmcal/](https://yan9a.github.io/mmcal/)
 
