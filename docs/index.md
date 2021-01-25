@@ -86,7 +86,7 @@ If you do not know how to add a Scriptable widget to your device home screen, tr
 
 ## 2. Quick intro to Scriptable app
 
-+ If you haven't used Scriptable app before, here is a quick guide:
+If you haven't used Scriptable app before, here is a quick guide:
 
 > + To **create** a new file: Open Scriptable app, tap on the Plus ➕ icon (on the top right corner)
 
@@ -97,7 +97,7 @@ If you do not know how to add a Scriptable widget to your device home screen, tr
 > + To **delete** a script file: tap & hold, select **Delete** in the pop up menu.
 
 ## 3. Update Latitude and Longitude
-You can use GPS to automatically update location data or type in manually:
+Dawn time calculation function needs location data. You can use GPS to automatically update location data or type in manually:
 
 ### Fill in location manually
 
@@ -204,9 +204,9 @@ by Bhikkhu Ñāṇadassana
 
 + When you move to a new city/new place, remember to update the lat & longitude values (manually or automatically). Otherwise, the dawn time calculation will just  show its calculated values from the previous place.
 
-+ The author(s) and contributor(s) of this project take no responsibilities or warranties for anything issues related to the use of this app, includes, but not limited to, your location privacy or the accuracy of calculated data...
++ The author(s) and contributor(s) of this project take no responsibilities or warranties for any issues related to the use of this app, include, but not limited to, your location privacy or the accuracy of calculated data...
 
-+ Keep in mind that the calculated data are for references only, it may vary (especially the dawn time) and incorrect , use with wisdom and peaceful mind!
++ Keep in mind that the calculated results are for references only, it may vary (especially the dawn time) and incorrect , use with wisdom and peaceful mind!
 
 + If you do not trust Scriptable app, or Apple Maps or this [open source Upcal](https://github.com/vpnry/upcal) simply don't use them.
 
