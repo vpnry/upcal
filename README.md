@@ -35,6 +35,7 @@ For details instructions, please see [https://vpnry.github.io/upcal](https://vpn
 
 ## 4. Feedback
 
-+ If you have any suggestions or found bugs, may give feedback here on [Google Form](https://forms.gle/1FzEVDYajhNXSkad7).
++ If you found bugs or errors related to this project, you may open a [new Git issue](https://github.com/vpnry/upcal/issues/new/choose) or contact us via this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSe9zXQVbkIynNwZAYlpc-C5QVCfYJ08pclcy8kuDtTgVk40YQ/viewform?usp=sf_link).
+
 
 + May you all be well and happy! 
