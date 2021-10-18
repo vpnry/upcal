@@ -1,6 +1,6 @@
 # Upcal - Myanmar Uposatha calendar and dawn time
 
-+ 🎉 A single stand alone html version for ALL platform
++ 🎉 A single stand alone html version for ALL platform [here](https://vpnry.github.io/upcal/upcal.html)
 
 + 🎉 Upcal new version: 2 (2021-01-20) (code re-organized - fresh installation needed for all)
 

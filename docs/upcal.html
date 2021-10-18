@@ -1,181 +1,192 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>upCal - Uposatha Calendar & Dawn Rise</title>
+        <style>
+            #gmt {
+                text-align: center;
+                color: green;
+                font-weight: bold;
+                font-size: small;
+                margin-top: 3px;
+                margin-bottom: 3px;
+            }
+            
+            #idclock {
+                text-align: center;
+                color: brown;
+                font-weight: bold;
+                font-size: large;
+                margin-top: 3px;
+                margin-bottom: 3px;
+            }
+            .r {
+                text-align: right;
+            }
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>upCal 2.0 - Uposatha & Dawn Rise Calendar</title>
-    <style>
-        .r {
-            text-align: right;
-        }
+            a {
+                text-decoration: none;
+            }
 
-        a {
-            text-decoration: none;
-        }
+            .entireyear {
+                font-size: small;
+            }
 
-        .entireyear {
-            font-size: small;
-        }
+            #upc {
+                padding-left: 5px;
+                padding-right: 5px;
+                border-top: solid black 3px;
+                border-bottom: solid black 3px;
+                border-left: solid black 3px;
+                border-right: solid black 3px;
+            }
 
-        #upc {
-            padding-left: 5px;
-            padding-right: 5px;
-            border-top: solid black 3px;
-            border-bottom: solid black 3px;
-            border-left: solid black 3px;
-            border-right: solid black 3px;
-        }
+            body {
+                font-size: large;
+                background: cornsilk;
+                color: rgb(14, 14, 114);
+                /* cursor: pointer; this will cause blue highlighting on tap on Android Chrome*/
+                cursor: default;
+                -webkit-tap-highlight-color: transparent;
+                font-family: "DejaVu Sans", "Times New Roman", Times, serif;
+                padding-left: 2px;
+                width: 95%;
+                margin-left: 2%;
+                margin-right: 2%;
+            }
 
-        body {
-            font-size: large;
-            background: cornsilk;
-            color: rgb(14, 14, 114);
-            /* cursor: pointer; this will cause blue highlighting on tap on Android Chrome*/
-            cursor: default;
-            -webkit-tap-highlight-color: transparent;
-            font-family: 'DejaVu Sans', 'Times New Roman', Times, serif;
-            padding-left: 2px;
-            width: 95%;
-            margin-left: 2%;
-            margin-right: 2%;
-        }
+            .sasana {
+                font-size: x-small;
+                text-align: right;
+                padding: 2px;
+                color: grey;
+            }
 
-        .sasana {
-            font-size: x-small;
-            text-align: right;
-            padding: 2px;
-            color: grey;
-        }
+            .small {
+                font-size: small;
+                padding: 2px;
+                color: black;
+            }
 
-        .small {
-            font-size: small;
-            padding: 2px;
-            color: black;
-        }
+            .nmo {
+                font-size: small;
+                text-align: center;
+                font-weight: bold;
+                padding: 2px;
+                background: #ccc;
+            }
 
-        .nmo {
-            font-size: small;
-            text-align: center;
-            font-weight: bold;
-            padding: 2px;
-            background: #ccc;
-        }
+            #tellFormula {
+                font-size: x-small;
+                padding: 2px;
+                text-align: center;
+            }
 
-        #tellFormula {
-            font-size: x-small;
-            padding: 2px;
-            text-align: center;
-        }
+            .smm {
+                padding: 2px;
+                text-align: center;
+                color: grey;
+                font-size: ;
+            }
 
-        .smm {
-            padding: 2px;
-            text-align: center;
-            color: grey;
-            font-size: ;
-        }
+            #inlatlong {
+                font-size: small;
+                padding: 2px;
+                text-align: center;
+            }
 
-        #inlatlong {
-            font-size: small;
-            padding: 2px;
-            text-align: center;
-        }
+            #inplace {
+                font-size: small;
+                padding: 2px;
+                text-align: center;
+            }
 
-        #inplace {
-            font-size: small;
-            padding: 2px;
-            text-align: center;
-        }
+            #informula {
+                font-size: small;
+                padding: 2px;
+                text-align: center;
+            }
 
-        #informula {
-            font-size: small;
-            padding: 2px;
-            text-align: center;
-        }
+            .grey {
+                color: grey;
+                font-size: small;
+            }
 
-        .grey {
-            color: grey;
-            font-size: small;
-        }
+            /*.even {}.now {}*/
+            .left {
+                text-align: left;
+            }
 
-        /*.even {}.now {}*/
-        .left {
-            text-align: left;
-        }
+            .center {
+                text-align: center;
+            }
 
-        .center {
-            text-align: center;
-        }
+            .red {
+                color: red;
+                font-weight: bold;
+            }
 
-        .red {
-            color: red;
-            font-weight: bold;
-        }
+            .tCenter {
+                margin: 0 auto;
+                font-size: small;
+                color: grey;
+            }
 
-        .tCenter {
-            margin: 0 auto;
-            font-size: small;
-            color: grey;
-        }
+            #disclaimer {
+                font-size: x-small;
+                color: grey;
+                text-align: left;
+            }
 
-        #disclaimer {
-            font-size: x-small;
-            color: grey;
-            text-align: left;
-        }
+            .tRight {
+                text-align: right;
+            }
 
-        .tRight {
-            text-align: right;
-        }
+            .tLeft {
+                text-align: left;
+            }
 
-        .tLeft {
-            text-align: left;
-        }
+            .tdButtoncenter {
+                text-align: center;
+            }
 
-        .tdButtoncenter {
-            text-align: center;
-        }
+            .dawnMonth td {
+                padding: 5px;
+            }
 
-        .dawnMonth td {
-            padding: 5px;
+            .bme {
+                border: solid black 1px;
+            }
 
-        }
+            .nobor {
+                border: unset;
+                border: dotted brown 2px;
+            }
 
-        .bme {
-            border: solid black 1px;
-        }
+            .headloca {
+                border: unset;
+            }
 
-        .nobor {
-            border: unset;
-            border: dotted brown 2px;
+            li {
+                margin-left: 0%;
+            }
+        </style>
+    </head>
 
-        }
-
-        .headloca {
-            border: unset;
-        }
-
-
-        li {
-            margin-left: 0%;
-        }
-    </style>
-</head>
-
-<body>
-
+    <body>
 
 <script>
-
 /**
- * upCal - single HTML file version 2.0
+ * upCal - single HTML file version 2.1
  * Show Dawnrise calculation and Myanmar Uposatha dates
  * Last modified 2021-08-12 (created 2021-07-26)
  * Credits & Licenses: see the information below or https://github.com/vpnry/upcal
  * It is a modifed version to use as a single HTML file from my Scriptable widget version. The code is very messy.
  */
 
-const verTopShow = "v2.0";
+const verTopShow = "v2.1";
 // Do mot change this default errorLocation value
 const errorLocation = 9999.99999;
 
@@ -221,74 +232,156 @@ const MYLONGITUDE =
 let MINMAXDAWN = [];
 let MINMAXNOON = [];
 
+const deviceGMT = 'GTM' + (new Date()).toString().split('GMT')[1]
+
 </script>
 
-
-    <div id="download">
-        Download this HTML file for offine use: <a href="https://vpnry.github.io/upcal/upcal.zip">upcal.zip</a> (~ 26.59 kB)
-    </div>
-    <br>
-    <div id="upc"></div>
-    <br>
-    <table class="tCenter">
-        <tr>
-            <td colspan="2" class="tdButtoncenter">Dawnrise (aruṇuggamana) settings</td>
-        </tr>
-        <tr>
-            <td colspan="2" class="tdButtoncenter"><i>Location input</i></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Enter latitude</td>
-            <td class="tLeft"><input size="15" id="lati" type="number" placeholder="example 19.86" onchange="goSaveLatLong()"></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Enter longitude</td>
-            <td class="tLeft"><input size="15" id="longi" type="number" placeholder="example 90.05" onchange="goSaveLatLong()"></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Location name</td>
-            <td class="tLeft"><input id="placeName" size="15" type="text" placeholder="name this place?" onchange="goSavePlaceName()"></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="tdButtoncenter"><i>Dawnrise calculation formula</i></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Show Nautical&Civil</td>
-            <td class="tLeft"><input id="naucivil" type="checkbox" onclick="goSaveShowNauCivil()"></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Use - X minutes formula</td>
-            <td class="tLeft"><input id="minus40" type="radio" name="formula" onclick="goChooseXMinuteFormula()">(default formula)</td>
-        </tr>
-        <tr>
-            <td class="tLeft">Positive X minute value</td>
-            <td class="tLeft"><input size="3" id="saveUserXMinuteInput" onchange="saveUserXMinuteInput()" type="number" value="40" placeholder="default: 40"></td>
-        </tr>
-        <tr>
-            <td class="tLeft">Use adaptive formula</td>
-            <td class="tLeft"><input id="adaptFormula" type="radio" name="formula" onclick="goChooseAdaptFormula()"></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="tdButtoncenter"><span id="tellFormula" class="grey"></span></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="tdButtoncenter">
-                <button onclick="goSaveAllApplyButton()">Apply</button></td>
-        </tr>
-    </table>
-    <hr>
-    <div id="disclaimer" class="tCenter grey">
-        <ul>
-            <li><b>Disclaimer</b>: All calculations are for references only. No warranties! Use with wisdom!</li>
-            <li><b>Date & time</b> are shown in your device current time zone.</li><br>
-            <li>To know your latitude & longitude, you can use <a href="https://play.google.com/store/apps/details?id=com.chartcross.gpstest" target="_blank">GPS Test</a> app or a supported map app.</li>
-            <li>To download new versions or get Apple iOS widget versions, check <a href="https://github.com/vpnry/upcal" target="_blank">upCal repository.</a></li>
-            <br>
-            <div id="licenses" style="display:none;">
-                <hr>
-                upCal uses the following open source libraries:
-
-<pre>
+        <div id="download">
+            Download this HTML file for offine use: <a href="https://vpnry.github.io/upcal/upcal.zip">upcal.zip</a> (~ 27.05 kB)
+        </div>
+        <div id="upc"></div>
+        <br />
+        <table class="tCenter">
+            <tr>
+                <td colspan="2" class="tdButtoncenter">
+                    Dawnrise (aruṇuggamana) settings
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tdButtoncenter">
+                    <i>Location input</i>
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Enter latitude</td>
+                <td class="tLeft">
+                    <input
+                        size="15"
+                        id="lati"
+                        type="number"
+                        placeholder="example 19.86"
+                        onchange="goSaveLatLong()"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Enter longitude</td>
+                <td class="tLeft">
+                    <input
+                        size="15"
+                        id="longi"
+                        type="number"
+                        placeholder="example 90.05"
+                        onchange="goSaveLatLong()"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Location name</td>
+                <td class="tLeft">
+                    <input
+                        id="placeName"
+                        size="15"
+                        type="text"
+                        placeholder="name this place?"
+                        onchange="goSavePlaceName()"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tdButtoncenter">
+                    <i>Dawnrise calculation formula</i>
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Show Nautical&Civil</td>
+                <td class="tLeft">
+                    <input
+                        id="naucivil"
+                        type="checkbox"
+                        onclick="goSaveShowNauCivil()"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Use - X minutes formula</td>
+                <td class="tLeft">
+                    <input
+                        id="minus40"
+                        type="radio"
+                        name="formula"
+                        onclick="goChooseXMinuteFormula()"
+                    />(default formula)
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Positive X minute value</td>
+                <td class="tLeft">
+                    <input
+                        size="3"
+                        id="saveUserXMinuteInput"
+                        onchange="saveUserXMinuteInput()"
+                        type="number"
+                        value="40"
+                        placeholder="default: 40"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="tLeft">Use adaptive formula</td>
+                <td class="tLeft">
+                    <input
+                        id="adaptFormula"
+                        type="radio"
+                        name="formula"
+                        onclick="goChooseAdaptFormula()"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tdButtoncenter">
+                    <span id="tellFormula" class="grey"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tdButtoncenter">
+                    <button onclick="goSaveAllApplyButton()">Apply</button>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <div id="disclaimer" class="tCenter grey">
+            <ul>
+                <li>
+                    <b>Disclaimer</b>: All calculations are for references only.
+                    No warranties! Use with wisdom!
+                </li>
+                <li>
+                    <b>Date & time</b> are shown in your device current time
+                    zone.
+                </li>
+                <br />
+                <li>
+                    To know your latitude & longitude, you can use
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.chartcross.gpstest"
+                        target="_blank"
+                        >GPS Test</a
+                    >
+                    app or a supported map app.
+                </li>
+                <li>
+                    To download new versions or get Apple iOS widget versions,
+                    check
+                    <a href="https://github.com/vpnry/upcal" target="_blank"
+                        >upCal repository.</a
+                    >
+                </li>
+                <br />
+                <div id="licenses" style="display: none">
+                    <hr />
+                    upCal uses the following open source libraries:
+                    <pre>
 
 + SunCalc (Vladimir Agafonkin)
 + MMCal (Yan Naing Aye)
@@ -359,16 +452,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-</pre>
-            </div>
-            <li onclick="vlicense()">To view open source licenses, click here.</li>
-        </ul><br>
-    </div>
+</pre
+                    >
+                </div>
+                <li onclick="vlicense()">
+                    To view open source licenses, click here.
+                </li>
+            </ul>
+            <br />
+        </div>
+
 
 <script>
 
 function vlicense() {
-    document.getElementById("licenses").style.display="";
+    document.getElementById("licenses").style.display = "";
 }
 
 function isNumber(n) {
@@ -548,10 +646,14 @@ let u_monthUposathaTitleTex = `Myanmar - Uposatha Dates`;
 const u_monthUposathaTitle =
     '<span class="small">' + u_monthUposathaTitleTex + "</span>";
 // Do not add "  " double spaces into these vars
-const u_FMPatimokkha = "🌕";
-const u_NMPatimokkha = "🔵";
-const u_WaxingQuarter = "🌓";
-const u_WaningQuarter = "🌗";
+
+const u_FMPatimokkha = String.fromCodePoint(127765); // 🌕
+const u_NMPatimokkha = String.fromCodePoint(128309); // 🔵
+const u_WaxingQuarter = String.fromCodePoint(127763); // 🌓
+const u_WaningQuarter = String.fromCodePoint(127767); // 🌗
+const icon_upCal = String.fromCodePoint(127749); // 🌅
+const icon_spin = String.fromCodePoint(128205); // 📍
+const icon_star = String.fromCodePoint(10024); // ✨
 
 const adjFontSize = 1;
 const fSize12 = newFSize(12, adjFontSize);
@@ -605,15 +707,34 @@ if (useDFORMULA) {
     showFormula = `Dawnrise = Sunrise - ${MMINUS} minutes.`;
 }
 
-document.getElementById(
-    "tellFormula"
-).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}<br>Using formula: ${showFormula}<br>`;
+function runningClock(id) {
+    let ele = document.getElementById(id);
+    function updateTime() {
+        let D = new Date();
+        let t =
+            f2d(D.getHours()) +
+            " : " +
+            f2d(D.getMinutes()) +
+            " : " +
+            f2d(D.getSeconds());
+        ele.textContent = t;
+    }
+    setInterval(updateTime, 1000);
+}
 
-let todayShow = createUpCalMonth();
-document.getElementById("upc").innerHTML =
-    todayShow +
-    "<p onclick='createWholeYearTable()' style='text-align:center;font-size:small;'>View Yearly Uposatha Dates<div id='createWholeYearTable' class='r entireyear'></div></p>" +
-    "<p onclick='createWholeMonthDawn()' style='text-align:center;font-size:small;'>View Monthly Timetable<div id='createWholeMonthDawn'></div></p>";
+(function runApp() {
+    
+    let todayShow = createUpCalMonth();
+    
+    document.getElementById(
+        "tellFormula"
+    ).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}<br>Using formula: ${showFormula}<br>`;
+    document.getElementById("upc").innerHTML =
+        todayShow +
+        "<p onclick='createWholeYearTable()' style='text-align:center;font-size:small;'>View Yearly Uposatha Dates<div id='createWholeYearTable' class='r entireyear'></div></p>" +
+        "<p onclick='createWholeMonthDawn()' style='text-align:center;font-size:small;'>View Monthly Timetable<div id='createWholeMonthDawn'></div></p>";
+    runningClock("idclock");
+})();
 
 function createWholeMonthDawn() {
     let cddt = new Date();
@@ -747,7 +868,7 @@ function getEntireMonthDawnStr(ayear, mIndex) {
         ayear +
         ")<hr>" +
         handleMinMaxArrayNumber(MINMAXNOON);
-  
+
     let tellMinmax = `<tr><td class="bme headloca" colspan="3">📍<i>Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}</i></td>
     </tr>
     <tr><td class="bme nobor"><i>${mmdawn}</i></td><td></td><td class="bme nobor"><i>${mmnoon}</i></td></tr><tr><td colspan="3"><hr width="95%" color=""></td></tr>`;
@@ -787,7 +908,6 @@ function getDawnAnyDateArray(
     displayNauticalCivilDawn = DISPLAYNAU
 ) {
     if (userlat == errorLocation || userlong == errorLocation) {
-        
         return [
             `Cannot calculate dawnrise`,
             `please provide:`,
@@ -959,8 +1079,8 @@ function createUpCalMonth() {
 
     let dstr = returnTodayString();
     let html =
-        `<div class="nmo" style="text-align:center;">🌅 upCal ${verTopShow}<br>${dstr}</div>\n` +
-        `${u_TodayDawnTime}📍${HERELOCA}<br>\n` +
+        `<div class="nmo" style="text-align:center;">${icon_upCal} upCal ${verTopShow}<br>${dstr}<br>${deviceGMT}</div><div id="idclock">${icon_star}</div>\n` +
+        `${u_TodayDawnTime}${icon_spin}${HERELOCA}<br>\n` +
         `${handleDawnHTML(dawnTodayArray)}</br>\n` +
         `${rightDiv(p_countGMTDate || u_monthUposathaTitle)}<br>\n` +
         `<span class="sasana">${u_SasanaYear + sasanaYearNow}</span><br>` +
@@ -1120,7 +1240,6 @@ function getDawnTodayArray(
     displayNauticalCivilDawn = DISPLAYNAU
 ) {
     if (userlat == errorLocation || userlong == errorLocation) {
-        
         return [
             `Cannot calculate dawnrise`,
             `please provide:`,
@@ -1206,7 +1325,6 @@ function getDawnTodayArray(
         `${sunset} Set`,
     ];
 }
-
 
 
 
@@ -3423,6 +3541,5 @@ function returnSunCalc() {
 //thisAppVersion=2
 
 </script>
-</body>
-
+    </body>
 </html>
