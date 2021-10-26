@@ -1,47 +1,63 @@
 Upcal - Uposatha calendar and dawn time
 ----------------------------------------------
 
-## 1. LT;DR; Instructions
 
-+ It has two version, a single HTML file for **all** devices and a widget version. Single HTML version online demo: [here](https://vpnry.github.io/upcal/upcal.html)
+## 1. Info
 
-+ Source code files are in the [docs](https://github.com/vpnry/upcal/docs).
+Upcal has has three variants: HTML, Andrpid app, and iOS widget (via Scriptable app).
 
-+ It shows calculated **Myanmar uposatha dates** for the current device month & dawn time for the current date.
+1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_demo.html)
 
-+  It can be used with a single HTML file on all OS or in the new widget on your iPhone, iPad home screen.
+2. 🌅 **upCal Android app** [download apk](https://vpnry.github.io/upcal/upcal.apk)
+
+3. 🌅 iOS widget [read instructions](https://vpnry.github.io/upcal/#1-install-scriptable)
+
+
+### Functions
+
++ Designed for Buddhists or ones who care about dawn-rise, noon time and Uposatha dates (Myanmar Uposatha dates).
+
++ It shows calculated **Myanmar uposatha dates** for the current device month & dawn-rise timetable for the current date and location.
+
++ List a whole year Uposatha dates of any year.
+
++ Dawn-rise time table for a whole month (Android and HTML only, iOS widget not yet).
+
+### iOS widget
 
 ![Upcal_Uposatha_Calendar_IOS](docs/img_Upcal_Uposatha_Calendar_IOS.jpeg)
 
-+ List a whole year Uposatha dates of any  year when user running **Upcal_Widget** in app mode.
++ Whole year Uposatha dates:
 
 ![Whole Year Uposatha Calendar](docs/img_Upcal_Whole_Year_Uposatha_Calendar_IOS.jpeg)
 
-+ Can use GPS to update location automatically or fill in location data manually in **Upcal_Setting**.
-
-+ For HTML file
+### Android and HTML 
 
 Main screen on Android:
 ![Upcal_Uposatha_Calendar_HTML](docs/upcal_html_main.jpg)
 
-Dawn rise table for a whole month:
+Dawn-rise time table for a whole month:
 ![Upcal_Uposatha_Calendar_HTML](docs/upcal_html_dawn_rise.jpg)
 
-+ For Modern Myanmar Calendarical Calculations, see: [https://yan9a.github.io/mmcal/](https://yan9a.github.io/mmcal/)
 
-## 2. HOW TO INSTALL
+## 2. Dev
++ Reduce screenshot file size: `jpegoptim --size=150k ./*.jpg`
 
++ Upcal-Android [source code](https://vpnry.github.io/upcal-android)
 
-For details instructions, please see [https://vpnry.github.io/upcal](https://vpnry.github.io/upcal)
++ Source code files for iOS widget (run on Scriptable) are in the [docs](https://github.com/vpnry/upcal/tree/main/docs).
+
++ TODO: re-organise the very very messy Javascript code and add dawn-rise timetable for iOS widget.
 
 
 ## 3. Open Source Libraries Acknowledgements 
 
-  + Myanmar uposatha dates: powered by the algorithm of Modern Myanmar Calendrical Calculations - [MMCal](https://github.com/yan9a/mmcal) (Yan Naing Aye)  (MIT License)
++ Myanmar uposatha dates: powered by the algorithm of Modern Myanmar Calendrical Calculations - [MMCal](https://github.com/yan9a/mmcal) (Yan Naing Aye)  (MIT License)
 
-  + Dawn time, sunrise...:  powered by [SunCalc](https://github.com/mourner/suncalc) (Vladimir Agafonkin) (MIT License)
++ Dawn time, sunrise calculations:  powered by [SunCalc](https://github.com/mourner/suncalc) (Vladimir Agafonkin) (MIT License)
 
-  + Scriptable Widget and table UI is based on this [Coronavirus Scriptable Widget](https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e) (03 Oct 2020)
++ Scriptable Widget and table UI is based on this [Coronavirus Scriptable Widget](https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e) (03 Oct 2020)
+  
 
 ## 4. Feedback
 

@@ -1,46 +1,47 @@
 # Upcal - Myanmar Uposatha calendar and dawn time
 
-+ 🎉 A single stand alone html version for ALL platform [here](https://vpnry.github.io/upcal/upcal.html)
++ 🎉 Upcal version 2.2 (2021-10-26)
 
-+ 🎉 Upcal new version: 2 (2021-01-20) (code re-organized - fresh installation needed for all)
+## 1. Info
 
-# Introduction
+Upcal has has three variants: HTML, Andrpid app, and iOS widget (via Scriptable app).
 
-+ It shows calculated **Myanmar uposatha dates** for the current device month & dawn time for the current date.
+1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_demo.html)
 
-+   It can be used with a single HTML file on all OS or in the new widget on your iPhone, iPad home screen.
+2. 🌅 upCal Android app [download apk](https://vpnry.github.io/upcal/upcal.apk)
+
+3. 🌅 iOS widget [read instructions](https://vpnry.github.io/upcal/#1-install-scriptable)
+
+**Functions:**
+
++ Designed for Buddhists or ones who care about dawn-rise, noon time and Uposatha dates (Myanmar Uposatha dates).
+
++ It shows calculated **Myanmar uposatha dates** for the current device month & dawn-rise timetable for the current date and location.
+
++ List a whole year Uposatha dates of any year.
+
++ Dawn-rise time table for a whole month (Android and HTML only, iOS widget not yet).
+
+### iOS widget screenshots
 
 ![Upcal_Uposatha_Calendar_IOS](img_Upcal_Uposatha_Calendar_IOS.jpeg)
 
-+ List a whole year Uposatha dates of any  year when user running **Upcal_Widget** in app mode.
++ Whole year Uposatha dates:
 
 ![Whole Year Uposatha Calendar](img_Upcal_Whole_Year_Uposatha_Calendar_IOS.jpeg)
 
-+ Can use GPS to update location automatically or fill in location data manually in **Upcal_Setting**.
-
-# Download
-
-It has two version, a single HTML file for **all** devices and a widget version.
-
-# A. A single HTML file for Android, computer and most of iOS/iPadOS versions:
-
-Online demo: [here](https://vpnry.github.io/upcal/upcal.html)
-
-For all platforms (computer, Android, Apple iOS/iPadOS devices, eBook readers...), download this standalone HTML file: [upcal.zip](https://vpnry.github.io/upcal/upcal.zip) (~ 26.59 kB)
-
-Unzip it and open the **upcal.html** with any Javascript enabled browser.
+### Android and HTML screenshots
 
 Main screen on Android:
 ![Upcal_Uposatha_Calendar_HTML](upcal_html_main.jpg)
 
-Dawn rise table for a whole month:
+Dawn-rise time table for a whole month:
 ![Upcal_Uposatha_Calendar_HTML](upcal_html_dawn_rise.jpg)
 
-_Note: it uses new Javascript code, so your browser should support JS 2015._
 
 ----
 
-# B. Widget on iOS/iPadOS version >= 14 
+## 2. iOS/iPadOS Widget Instructions (for iOS version >= 14 only)
 
 ## 1. Install Scriptable
  [**Scriptable**](https://apps.apple.com/vn/app/scriptable/id1405459188) app by **Simon Støvring** from **App Store**.
