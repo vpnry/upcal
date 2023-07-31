@@ -6,7 +6,7 @@ Upcal - Uposatha calendar and dawn time
 
 Upcal has has three variants: HTML, Andrpid app, and iOS widget (via Scriptable app).
 
-1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_demo.html)
+1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_offline.html)
 
 2. 🌅 **upCal Android app** Download APK from [upCal Android releases](https://github.com/vpnry/upcal-android/releases)
 

@@ -8,6 +8,7 @@
  * Cuong DANG @ 2020 - Upcal is released under the MIT License too
  * --------------------------------------------------------------------
  * File: Upcal_Module.js
+ * Last modified: 31 July 2023 (fix 31 date, + 1 month a head)
  * Last modified: 20 Jan 2021
  * --------------------------------------------------------------------
  * Open source library (MIT) used:
@@ -17,8 +18,8 @@
  * https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e
  *--------------------------------------------------------------------*/
 
-const thisAppVersion = 2;
-const thisAppVersionDate = "(2021-01-20)";
+const thisAppVersion = 3;
+const thisAppVersionDate = "(2023-07-31)";
 const jsonParsePoint = "u@pc@l";
 const errorLocation = 9999.99999;
 const upcalRepos = "https://vpnry.github.io/upcal";
@@ -2421,6 +2422,11 @@ SOFTWARE.
   //*********************************************
 
   var dt = new Date();
+  // fix returning a month ahead of the expected value when the app is running on 31 date of month set date = 1
+  // thanks ven. Dhmdr S'porean for bug reporting 
+  dt.setDate(1);
+  
+
 
   if (isNumber(setthisyear)) {
     dt.setFullYear(Number(setthisyear));
@@ -2897,4 +2903,4 @@ function returnSunCalc() {
 }
 
 // Do not edit anything beyond this line, it is used for compare new version update
-//thisAppVersion=2
+//thisAppVersion=3

@@ -14,7 +14,18 @@
                 margin-bottom: 3px;
             }
             
-       
+            .darkmode {
+                background: black;
+                color: black;
+            }
+            
+            .gpsButtonClass {
+                background: white;
+                color: blue;
+                
+                
+            }
+            
             #idclock {
                 text-align: center;
                 color: brown;
@@ -89,7 +100,6 @@
                 padding: 2px;
                 text-align: center;
                 color: grey;
-                font-size: ;
             }
 
             #inlatlong {
@@ -173,18 +183,6 @@
             li {
                 margin-left: 0%;
             }
-            
-            .dark_mode {
-                background-color: white;
-                color: white;
-            }
-            
-            .gpsButtonClass {
-                background: white;
-                color: blue;
-                font-weight: bold;
-            }
-            
         </style>
     </head>
 
@@ -192,8 +190,9 @@
 
 <script>
 /**
- * upCal - single HTML file version 2.2
+ * upCal - single HTML file version 2.4
  * Show Dawnrise calculation and Myanmar Uposatha dates
+ * Last modified 2023-07-31
  * Last modified 2021-10-25
  * 
  * Credits & Licenses: see the information below or https://github.com/vpnry/upcal
@@ -202,7 +201,7 @@
  * The code is very very very messy. And I want to keep it as a good memory.
  */
 
-const verTopShow = "v2.2";
+const verTopShow = "v2.4";
 // Do mot change this default errorLocation value
 const errorLocation = 9999.99999;
 
@@ -246,9 +245,8 @@ const MYLATITUDE = localStorage.getItem("upCal_SavedLatitude") || errorLocation;
 const MYLONGITUDE =
     localStorage.getItem("upCal_SavedLongitude") || errorLocation;
     
-let ACCURACY_GPS_METER =
-    localStorage.getItem("upCal_SavedGPSAcuracy") || "";
-    
+let ACCURACY = '';
+
 // Monthly min max timetable
 let MINMAXDAWN = [];
 let MINMAXNOON = [];
@@ -257,16 +255,15 @@ const deviceGMT = 'GTM' + (new Date()).toString().split('GMT')[1]
 
 //==== GPS 
 function blankPageWhenDetectingGPS() {
-    let bodyEle = document.body;
-    bodyEle.classList.toggle("dark_mode");
+    let body = document.body;
+    body.classList.toggle("darkmode");
     let btton = document.getElementById("gpsButton");
     btton.classList.toggle("gpsButtonClass");
 }
 
 function getLocationByGPS() {
     blankPageWhenDetectingGPS()
-    
-    document.getElementById("gpsButton").textContent = "LOCATING, please wait...";
+    document.getElementById("gpsButton").textContent = "Detecting, please wait...";
     const options = {
         enableHighAccuracy: true,
         timeout: 480000,
@@ -287,17 +284,12 @@ function handleSuccess(res) {
     let loca = res.coords;
     let lat = loca["latitude"];
     let long = loca["longitude"];
-    let acuracyM = loca["accuracy"];
-    acuracyM = acuracyM.toString()
-    acuracyM = acuracyM.slice(0,4)
-    ACCURACY_GPS_METER = `GPS accuracy: around ${acuracyM} meters.<br>`;
-    
-    localStorage.setItem("upCal_SavedGPSAcuracy", ACCURACY_GPS_METER);
-    
+    let acu = loca["accuracy"];
+
     document.getElementById("lati").value = lat;
     document.getElementById("longi").value = long;
     alert(
-        "SUCCESSFULLY located with GPS location.\n\nNow manually give a name for the Location name, for example: My Room."
+        "Successfully set location with GPS location\nPlease give a name for this location, like: My Room"
     );
     setTimeout(goSaveAllApplyButton, 500);
 }
@@ -320,13 +312,6 @@ function handleError(e) {
 
 </script>
 
-        <div id="download">
-            Download for offine use:
-            <ul><li>Simple Android app <a href="https://vpnry.github.io/upcal/upcal.apk">upcal.apk</a> (~ 272.x kB)</li>
-            <li>Or standalone HTML file:
-            <a href="https://vpnry.github.io/upcal/upcal.zip">upcal.zip</a> (~ 27.x kB)
-            </li></ul>
-        </div>
         <div id="upc"></div>
         <br />
         <table class="tCenter">
@@ -425,7 +410,7 @@ function handleError(e) {
                         onchange="saveUserXMinuteInput()"
                         type="number"
                         value="40"
-                        placeholder="default: 40"
+                        placeholder="default (Pa-Auk): 40"
                     />
                 </td>
             </tr>
@@ -832,7 +817,7 @@ function runningClock(id) {
     
     document.getElementById(
         "tellFormula"
-    ).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}<br>${ACCURACY_GPS_METER}Using formula: ${showFormula}<br>`;
+    ).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}<br>Using formula: ${showFormula}<br>`;
     document.getElementById("upc").innerHTML =
         todayShow +
         "<p onclick='createWholeYearTable()' style='text-align:center;font-size:small;'>View Yearly Uposatha Dates<div id='createWholeYearTable' class='r entireyear'></div></p>" +
@@ -1011,6 +996,7 @@ function getDawnAnyDateArray(
     useDynamicDawn_Formula2 = useDFORMULA,
     displayNauticalCivilDawn = DISPLAYNAU
 ) {
+  // for time table
     if (userlat == errorLocation || userlong == errorLocation) {
         return [
             `Cannot calculate dawnrise`,
@@ -1050,7 +1036,7 @@ function getDawnAnyDateArray(
         f2d(nauticalDawn.getHours()) + ":" + f2d(nauticalDawn.getMinutes());
 
     const civilValue =
-        f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
+         f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
 
     let userDawnValue2 =
         f2d(userDawn2.getHours()) + ":" + f2d(userDawn2.getMinutes());
@@ -1076,10 +1062,10 @@ function getDawnAnyDateArray(
 
     if (displayNauticalCivilDawn) {
         return [
-            `${userDawnValue} Dawn`,
+            `${userDawnValue} Dawnrise`,
             /*`${userDawnValue2} Dawn`,*/
             `${nauticalValue} Nautical`,
-            `${civilValue} Civil`,
+            `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
             `${sunrise} Sunrise`,
             `${solarNoon} Noon`,
             `${sunset} Set`,
@@ -1415,7 +1401,7 @@ function getDawnTodayArray(
             `${userDawnValue} Dawnrise`,
             /*`${userDawnValue2} Dawn`,*/
             `${nauticalValue} Nautical`,
-            `${civilValue} Civil`,
+              `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
             `${sunrise} Sunrise`,
             `${solarNoon} Noon`,
             `${sunset} Set`,
@@ -3166,7 +3152,11 @@ SOFTWARE.
   //*********************************************
 
   var dt = new Date();
-
+  // fix returning a month ahead of the expected value when the app is running on 31 date of month set date = 1
+  // thanks ven. Dhmdr S'porean for bug reporting
+    
+  dt.setDate(1);
+  
   if (isNumber(setthisyear)) {
     dt.setFullYear(Number(setthisyear));
   }

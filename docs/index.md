@@ -1,18 +1,16 @@
 # Upcal - Myanmar Uposatha calendar and dawn time
 
-+ 🎉 Upcal version 2.2 (2021-10-26)
-
 ## 1. Info
 
 Upcal has has three variants: HTML, Andrpid app, and iOS widget (via Scriptable app).
 
-1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_demo.html)
+1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_offline.html)
 
-2. 🌅 upCal Android app [download apk](https://vpnry.github.io/upcal/upcal.apk)
+2. 🌅 **upCal Android app** Download APK from [upCal Android releases](https://github.com/vpnry/upcal-android/releases)
 
 3. 🌅 iOS widget [read instructions](https://vpnry.github.io/upcal/#1-install-scriptable)
 
-**Functions:**
+### Functions
 
 + Designed for Buddhists or ones who care about dawn-rise, noon time and Uposatha dates (Myanmar Uposatha dates).
 
