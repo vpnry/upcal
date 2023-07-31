@@ -2,7 +2,7 @@
 
 ## 1. Info
 
-Upcal has has three variants: HTML, Andrpid app, and iOS widget (via Scriptable app).
+Upcal has has three variants: HTML, Android app, and iOS widget (via Scriptable app).
 
 1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_offline.html)
 
