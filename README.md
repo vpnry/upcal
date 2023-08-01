@@ -43,7 +43,7 @@ Dawn-rise time table for a whole month:
 ## 2. Dev
 + Reduce screenshot file size: `jpegoptim --size=150k ./*.jpg`
 
-+ Upcal-Android [source code](https://vpnry.github.io/upcal-android)
++ Upcal-Android [source code](https://github.com/vpnry/upcal-android)
 
 + Source code files for iOS widget (run on Scriptable) are in the [docs](https://github.com/vpnry/upcal/tree/main/docs).
 
