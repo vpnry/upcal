@@ -8,7 +8,7 @@ Upcal has has three variants: HTML, Android app, and iOS widget (via Scriptable 
 
 1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_offline.html)
 
-2. 🌅 **upCal Android app** Download APK from [upCal Android releases](https://github.com/vpnry/upcal-android/releases)
+2. 🌅 upCal **Android app** DOWNLOAD APK from [upCal Android releases](https://github.com/vpnry/upcal-android/releases)
 
 3. 🌅 iOS widget [read instructions](https://vpnry.github.io/upcal/#1-install-scriptable)
 

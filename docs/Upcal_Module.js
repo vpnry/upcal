@@ -8,6 +8,7 @@
  * Cuong DANG @ 2020 - Upcal is released under the MIT License too
  * --------------------------------------------------------------------
  * File: Upcal_Module.js
+ * Last modified: 31 Oct 2023 wrapped class ceMmDateTime
  * Last modified: 31 July 2023 (fix 31 date, + 1 month a head)
  * Last modified: 20 Jan 2021
  * --------------------------------------------------------------------
@@ -18,8 +19,8 @@
  * https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e
  *--------------------------------------------------------------------*/
 
-const thisAppVersion = 3;
-const thisAppVersionDate = "(2023-07-31)";
+const thisAppVersion = 4;
+const thisAppVersionDate = "(2023-10-31)";
 const jsonParsePoint = "u@pc@l";
 const errorLocation = 9999.99999;
 const upcalRepos = "https://vpnry.github.io/upcal";
@@ -58,11 +59,28 @@ const u_NMPatimokkha = "🔵";
 const u_WaxingQuarter = "🌓";
 const u_WaningQuarter = "🌗";
 
+
+const icon_calm = String.fromCodePoint(128524); /* 🔆 */
+const icon_lightsun = String.fromCodePoint(128262); /* 🔆 */
+const icon_spin = String.fromCodePoint(128205); /* 📍 */
+const icon_star = String.fromCodePoint(10024); /* ✨ */
+const icon_wheel = String.fromCodePoint(9784); /* ☸ */
+const icon_vs = String.fromCodePoint(127386); /* 🆚 */
+const icon_next = String.fromCodePoint(9197) + String.fromCodePoint(65039); /* ⏭️ */
+
+
+
 const adjFontSize = 1;
 const fSize12 = newFSize(12, adjFontSize);
 const fSize14 = newFSize(14, adjFontSize);
 const fSize16 = newFSize(16, adjFontSize);
 const fSize18 = newFSize(18, adjFontSize);
+
+const minLT = 1900, maxUT = 2139;
+
+/* hoisting ussāpenta the ceMmDateTime class */
+const ceMmDateTime = returnClass_ceMmDateTime();
+
 
 let sasanaYearNow = "";
 
@@ -110,7 +128,7 @@ const upCAL = {
     let cddt = new Date();
     let dawnTodayArray = getDawnTodayArray(this.settings.latitude, this.settings.longitude, this.settings.altitude, this.settings.u_DawnMinus, this.settings.useDynamicDawn_Formula2, this.settings.displayNauticalCivilDawn);
 
-    let uposathaDateArray = getUposathaMonthArray(cddt.getFullYear(), cddt.getMonth(), true);
+    let uposathaDateArray = getUpoDatesOfAMonth(cddt.getFullYear(), cddt.getMonth(), true);
 
     let dstr = returnTodayString();
     let widget = createWidget(
@@ -167,7 +185,7 @@ const upCAL = {
 
     let i = 0;
     for (; i < 12; i++) {
-      let rowi = createRow(u_iMonths[i], getUposathaMonthArray(thisYear, i));
+      let rowi = createRow(u_iMonths[i], getUpoDatesOfAMonth(thisYear, i));
 
       if (i == cDeviceMonth) {
         rowi.backgroundColor = Color.green();
@@ -179,7 +197,7 @@ const upCAL = {
 
     // add legend
     let legendrow = new UITableRow();
-    legendrow.addText("", `\n🌕 full moon | 🔵 new moon | 14/15th: 14/15th day | other: quarter uposatha`).rightAligned();
+    legendrow.addText("", `\n🌕 full moon | 🔵 new moon | 14/15th: 14/15th day | other: quarter uposatha.\n${icon_vs}${icon_next}: next day vassa event (please double check!).`).rightAligned();
     table.addRow(legendrow);
 
     // add credit
@@ -696,7 +714,202 @@ function getDawnTodayArray(userlat, userlong, userheight = 0, u_DawnMinus = 40, 
  * MMCAL Library
  * ------------------------------------------------------------------*/
 
-function getUposathaMonthArray(setthisyear, setthismonth, isWidget = false) {
+
+function markFullMoonDates(mm, mp = 1) {
+  /**
+   * input: (mm=Myanmar month, mp=moon phase)
+   * output: theday string with icon or ''
+   * After 2022 the accuracy of MM dates is in question.
+   * Note: minLT <= Western year <= maxUT
+   **/
+
+  if (mp != 1) {
+    /* only for full moon day */
+    return "";
+  }
+
+  let theday = "";
+  switch (mm) {
+    /*
+    case 2:
+      theday = `<span style='color:grey;' onclick="alert('Vessak day.')">${icon_wheel} </span>`;
+      break;
+    case 3:
+      theday = `<span style='color:grey;' onclick="alert('Mahāsamaya day.')">${icon_wheel} </span>`;
+      break;
+    */
+    case 4:
+      theday = ` ${icon_vs}${icon_next}`;
+      break;
+    /*
+    case 5:
+      theday = `<span style='color:grey' onclick="alert('Mettā day.')">${icon_wheel} </span>`;
+      break;
+    case 6:
+      theday = `<span style='color:grey' onclick="alert('Garudhamma day.')">${icon_wheel} </span>`;
+      break;
+    */
+    case 7:
+      theday = ` ${icon_vs}${icon_next}`;
+      break;
+    default:
+      theday = "";
+      break;
+  }
+
+  return theday;
+}
+
+function getUpoDatesOfAMonth(setthisyear, setthismonth, isWidget = false) {
+  /********************************************** */
+  /* input: setthisyear= a year number like 2015, setthismonth=[0-11] zero based month, isWidget = false/true (widget html) */
+  /* output: array: uposatha date of the input month */
+
+  /* Reference: the index.html of mmcal */
+  /********************************************** */
+  let ynumber, mnumber;
+
+  let dt = new Date();
+  /* fix returning a month ahead of the expected value when the app is running on 31 date of month by set date = 1 */
+  /* This bug only occured when using the workaround (i + 1 - r) (unnoted the M.d) to show date when the app is running on 31 date of month. */
+  /* thanks ven. Dhmdr S'porean for bug reporting */
+
+  dt.setDate(1);
+  /* since upCal V2.5 (single html file), we use the library provided M.d, dt.setDate(1) is now optional */
+
+  if (isNumber(setthisyear)) {
+    ynumber = Number(setthisyear);
+    dt.setFullYear(ynumber);
+  }
+
+  if (isNumber(setthismonth)) {
+    mnumber = Number(setthismonth);
+    dt.setMonth(mnumber);
+  }
+
+  /* Init */
+  var uis = {
+    Lang: 0, //undefined,//Language 0 = English
+    Type: 0, //Gregorian or Julian
+    y: dt.getFullYear(),
+    m: 1 + dt.getMonth(),
+    d: dt.getDate(), //y,m,d to display
+    cy: dt.getFullYear(),
+    cm: 1 + dt.getMonth(),
+    cd: dt.getDate(), //current y,m,d
+    BY: 640,
+    EY: 2140, //beginning and end of the calendar,
+    LT: 1700,
+    UT: 2022, //lower and upper threshold for accurate years
+  };
+
+  var r,
+    i,
+    js,
+    je,
+    eml,
+    tstr,
+    str = "";
+  //------------------------------------------------------------------------
+  var Cday = new ceMmDateTime(); // start of month
+  Cday.SetTimezone(0);
+  Cday.SetDateTime(uis.cy, uis.cm, uis.cd, 12, 0, 0, 0); // time zone is irrelevant
+  //------------------------------------------------------------------------
+  var MS = new ceMmDateTime(); // start of month
+  MS.SetTimezone(0);
+
+  /* pnry: we can change year and month here: uis.y, uis.m to calculate other month */
+
+  MS.SetDateTime(uis.y, uis.m, 1, 12, 0, 0, 0, uis.Type); // time zone is irrelevant
+
+  sasanaYearNow = MS.ToMString("&YYYY") + " - MM year " + MS.ToMString("&yyyy"); /* +  ' (' + MS.my_name + ')';*/
+
+  js = MS.jdn; //Find julian day number of start of
+  // the month according to calendar type
+
+  /* we will use it to set SetJD(js) inside the loop below */
+
+  eml = MS.mlen; //get the length of the month
+  je = js + eml - 1; //Julian day number of end of the month
+
+  /* ---------------------------------------------------------------------- */
+  r = (MS.w + 6) % 7;
+  eml = Math.ceil((eml + r) / 7) * 7;
+  var M = new ceMmDateTime(); // end of month
+  M.SetTimezone(0);
+  M.SetCT(uis.Type);
+
+  let markDate = "";
+  /* loop each date for the month of setthismonth */
+  for (i = 0; i < eml; i++) {
+    markDate = "";
+
+    /*start of checking valid day to display */
+    if (i >= r && js <= je) {
+      M.SetJD(js);
+      /* M.mp = moon phase [0=waxing, 1=full moon, 2=waning, 3=new moon] */
+      /* M.ToMString("&ff"): 14/15 */
+
+      if (isWidget) {
+        switch (M.mp) {
+          case 0:
+            if (M.sabbath === "Sabbath") str += u_WaxingQuarter + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 1:
+            /* 
+            markDate only marks some full moon dates
+            */
+
+            if (minLT <= ynumber && ynumber <= maxUT) {
+              markDate = markFullMoonDates(M.mm);
+            }
+
+            str += markDate + M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 2:
+            if (M.sabbath === "Sabbath") str += u_WaningQuarter + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 3:
+            str += M.ToMString("&ff") + `th` + u_NMPatimokkha + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+        }
+      } else {
+        switch (M.mp) {
+          /* shorter in iOS table (only showing date) */
+          case 0:
+            if (M.sabbath === "Sabbath") str += f2d(M.d) + "@@";
+            break;
+          case 1:
+            if (minLT <= ynumber && ynumber <= maxUT) {
+              markDate = markFullMoonDates(M.mm);
+            }
+            str += markDate + M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(M.d) + "@@";
+            break;
+          case 2:
+            if (M.sabbath === "Sabbath") str += f2d(M.d) + "@@";
+            break;
+          case 3:
+            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(M.d) + "@@";
+            break;
+        }
+      }
+      // displaying Myanmar date
+      // if (M.my>=2) { str += mMDStr(M); }
+      js++; //Julian day number for next day
+    } else {
+      /* Do Nothing */
+    }
+  }
+
+  return str.split("@@");
+}
+
+function returnClass_ceMmDateTime() {
+    
+  /*----------------
+   * MMCAL Library
+   * --------------*/
+ 
   /*--------------------------------------------------------------------
    * ceMmDateTime.js, index.htm
    * Modified and deleted un-used classes for UPCAL Scriptable iOS widget
@@ -2279,10 +2492,10 @@ SOFTWARE.
 
     // Myanmar year name
     get my_name() {
-      // var yna=["ပုဿနှစ်","မာခနှစ်","ဖ္လကိုန်နှစ်","စယ်နှစ်",
-      // 	"ပိသျက်နှစ်","စိဿနှစ်","အာသတ်နှစ်","သရဝန်နှစ်",
-      // 	"ဘဒြနှစ်","အာသိန်နှစ်","ကြတိုက်နှစ်","မြိက္ကသိုဝ်နှစ်"];
-      var yna = ["Hpusha", "Magha", "Phalguni", "Chitra", "Visakha", "Jyeshtha", "Ashadha", "Sravana", "Bhadrapaha", "Asvini", "Krittika", "Mrigasiras"];
+      var yna=["ပုဿ","မာခ","ဖ္လကိုန်","စယ်",
+       	"ပိသျက်","စိဿ","အာသတ်","သရဝန်",
+       	"ဘဒြ","အာသိန်","ကြတိုက်","မြိက္ကသိုဝ်"];
+      // var yna = ["Hpusha", "Magha", "Phalguni", "Chitra", "Visakha", "Jyeshtha", "Ashadha", "Sravana", "Bhadrapaha", "Asvini", "Krittika", "Mrigasiras"];
       return yna[this.my % 12];
     }
 
@@ -2398,6 +2611,7 @@ SOFTWARE.
     }
   }
 
+  /*
   function mMDStr(M) {
     var str = "",
       tstr = "";
@@ -2416,124 +2630,11 @@ SOFTWARE.
     str += "</p>";
     return str;
   }
-
-  //*********************************************
-  //* modified index.htm of mmcal by @Cuong Dang
-  //*********************************************
-
-  var dt = new Date();
-  // fix returning a month ahead of the expected value when the app is running on 31 date of month set date = 1
-  // thanks ven. Dhmdr S'porean for bug reporting 
-  dt.setDate(1);
+  */
   
-
-
-  if (isNumber(setthisyear)) {
-    dt.setFullYear(Number(setthisyear));
-  }
-
-  if (isNumber(setthismonth)) {
-    dt.setMonth(Number(setthismonth));
-  }
-
-  //User Interface setting
-  var uis = {
-    Lang: 0, //undefined,//Language 0 = English
-    Type: 0, //Gregorian or Julian
-    y: dt.getFullYear(),
-    m: 1 + dt.getMonth(),
-    d: dt.getDate(), //y,m,d to display
-    cy: dt.getFullYear(),
-    cm: 1 + dt.getMonth(),
-    cd: dt.getDate(), //current y,m,d
-    BY: 640,
-    EY: 2140, //beginning and end of the calendar,
-    LT: 1700,
-    UT: 2022, //lower and upper threshold for accurate years
-  };
-  var r,
-    i,
-    js,
-    je,
-    eml,
-    tstr,
-    str = "";
-  //------------------------------------------------------------------------
-  var Cday = new ceMmDateTime(); // start of month
-  Cday.SetTimezone(0);
-  Cday.SetDateTime(uis.cy, uis.cm, uis.cd, 12, 0, 0, 0); // time zone is irrelevant
-  //------------------------------------------------------------------------
-  var MS = new ceMmDateTime(); // start of month
-  MS.SetTimezone(0);
-
-  // pnry, we can change year and month here: uis.y, uis.m to calculate other month
-
-  MS.SetDateTime(uis.y, uis.m, 1, 12, 0, 0, 0, uis.Type); // time zone is irrelevant
-
-  sasanaYearNow = MS.ToMString("&YYYY");
-
-  js = MS.jdn; //Find julian day number of start of
-  //the month according to calendar type
-  eml = MS.mlen; //get the length of the month
-  je = js + eml - 1; //Julian day number of end of the month
-  var ME = new ceMmDateTime(); // end of month
-  ME.SetTimezone(0);
-  ME.SetJD(je);
-  //-----------------------------------------------------------------------
-  r = (MS.w + 6) % 7;
-  eml = Math.ceil((eml + r) / 7) * 7;
-  var M = new ceMmDateTime(); // end of month
-  M.SetTimezone(0);
-  M.SetCT(uis.Type);
-  for (i = 0; i < eml; i++) {
-    //start of checking valid day to display
-    if (i >= r && js <= je) {
-      M.SetJD(js);
-      // M.mp = moon phase [0=waxing, 1=full moon, 2=waning, 3=new moon]
-      // M.ToMString: myanmar nth day number
-
-      if (isWidget) {
-        switch (M.mp) {
-          case 0:
-            if (M.sabbath === "Sabbath") str += u_WaxingQuarter + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 1:
-            str += M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 2:
-            if (M.sabbath === "Sabbath") str += u_WaningQuarter + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 3:
-            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-        }
-      } else {
-        switch (M.mp) {
-          // shorter in table (only date)
-          case 0:
-            if (M.sabbath === "Sabbath") str += f2d(i + 1 - r) + ";";
-            break;
-          case 1:
-            str += M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(i + 1 - r) + ";";
-            break;
-          case 2:
-            if (M.sabbath === "Sabbath") str += f2d(i + 1 - r) + ";";
-            break;
-          case 3:
-            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(i + 1 - r) + ";";
-            break;
-        }
-      }
-      // displaying Myanmar date
-      // if (M.my>=2) { str += mMDStr(M); }
-      js++; //Julian day number for next day
-    } else {
-      // Do Nothing
-    }
-  }
-
-  return str.split(";");
+  return ceMmDateTime;
 }
+
 
 /*--------------------------------------------------------------------
  * SunCalc Library
@@ -2569,7 +2670,43 @@ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF TH
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
+
 function returnSunCalc() {
+  /*--------------------------------------------------------------------
+ * SunCalc Library
+ * ------------------------------------------------------------------*/
+
+/*
+ (c) 2011-2015, Vladimir Agafonkin
+ SunCalc is a JavaScript library for calculating sun/moon position and light phases.
+ https://github.com/mourner/suncalc
+ 
+ 
+Copyright (c) 2014, Vladimir Agafonkin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met:
+
+   1. Redistributions of source code must retain the above copyright notice, this list of
+      conditions and the following disclaimer.
+
+   2. Redistributions in binary form must reproduce the above copyright notice, this list
+      of conditions and the following disclaimer in the documentation and/or other materials
+      provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
+
   "use strict";
 
   // shortcuts for easier to read formulas
@@ -2891,16 +3028,18 @@ function returnSunCalc() {
     return result;
   };
 
-  var window = window ? window : {};
+  // var window = window ? window : {};
 
   // export as Node module / AMD module / browser variable
+  /** pnry disabled this
   if (typeof exports === "object" && typeof module !== "undefined") module.exports = SunCalc;
   else if (typeof define === "function" && define.amd) define(SunCalc);
   else window.SunCalc = SunCalc;
-
-  // pnry added return SunCalc
+  */
+  /* pnry added return SunCalc */
   return SunCalc;
 }
 
+
 // Do not edit anything beyond this line, it is used for compare new version update
-//thisAppVersion=3
+//thisAppVersion=4

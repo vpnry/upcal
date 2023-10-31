@@ -5,470 +5,246 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>upCal - Uposatha Calendar & Dawn Rise</title>
         <style>
-            #gmt {
-                text-align: center;
-                color: green;
-                font-weight: bold;
-                font-size: small;
-                margin-top: 3px;
-                margin-bottom: 3px;
-            }
-            
-            .darkmode {
-                background: black;
-                color: black;
-            }
-            
-            .gpsButtonClass {
-                background: white;
-                color: blue;
-                
-                
-            }
-            
-            #idclock {
-                text-align: center;
-                color: brown;
-                font-weight: bold;
-                font-size: large;
-                margin-top: 3px;
-                margin-bottom: 3px;
-            }
-            .r {
-                text-align: right;
-            }
+           #gmt {text-align: center;color: green;font-weight: bold;font-size: small;margin-top: 3px;margin-bottom: 3px;}.darkmode {background: black;color: black;}.gpsButtonClass {background: white;color: blue;}#idclock {text-align: center;color: brown;font-weight: bold;font-size: large;margin-top: 3px;margin-bottom: 3px;}.r {text-align: right;}a {text-decoration: none;}.entireyear {font-size: small;}#upc {padding-left: 5px;padding-right: 5px;border-top: solid black 3px;border-bottom: solid black 3px;border-left: solid black 3px;border-right: solid black 3px;}body {font-size: large;background: cornsilk;color: rgb(14, 14, 114);/* cursor: pointer; this will cause blue highlighting on tap on Android Chrome */cursor: default;-webkit-tap-highlight-color: transparent;font-family: "DejaVu Sans", "Times New Roman", Times, serif;padding-left: 2px;width: 95%;margin-left: 2%;margin-right: 2%;}.sasana {font-size: x-small;text-align: right;/* padding: 2px; */color: grey;}.small {font-size: small;/* padding: 2px; */color: black;}.upCalTitle {font-size: small;text-align: center;font-weight: bold;padding: 2px;background: #ccc;}#tellFormula {font-size: x-small;padding: 2px;text-align: center;}#tellFormulaTd {border: dotted 1px #ccc;}.smm {padding: 2px;text-align: center;color: grey;}#inlatlong {font-size: small;padding: 2px;text-align: center;}#inplace {font-size: small;padding: 2px;text-align: center;}#informula {font-size: small;padding: 2px;text-align: center;}.grey {color: grey;font-size: small;}.sUpo {color: midnightblue;font-size: small;}.even {background: #ddd;}/* .now {} */.left {text-align: left;}.center {text-align: center;}.red {/* color: rgb(14, 14, 114); */border-left: solid 10px rgb(14, 14, 114);padding-left: 10px;font-size: large;font-weight: bold;}.tCenter {margin: 0 auto;font-size: small;color: grey;}#disclaimer {font-size: x-small;color: grey;text-align: left;}.tRight {text-align: right;}.tLeft {text-align: left;}.tdButtoncenter {text-align: center;}.dawnMonth {font-size: small;}.dawnMonth td {padding: 5px;}.bme {border: solid black 1px;}.nobor {border: unset;border: dotted brown 2px;}.headloca {border: unset;}li {margin-left: 0%;}.closetable {border: dotted 1px red;padding: 5px;border-radius: 5px;width: 50%;font-size: x-small;user-select: none;font-weight: bold;background: #ddd;text-align: center;color: midnightblue;}
+            </style>
 
-            a {
-                text-decoration: none;
-            }
-
-            .entireyear {
-                font-size: small;
-            }
-
-            #upc {
-                padding-left: 5px;
-                padding-right: 5px;
-                border-top: solid black 3px;
-                border-bottom: solid black 3px;
-                border-left: solid black 3px;
-                border-right: solid black 3px;
-            }
-
-            body {
-                font-size: large;
-                background: cornsilk;
-                color: rgb(14, 14, 114);
-                /* cursor: pointer; this will cause blue highlighting on tap on Android Chrome*/
-                cursor: default;
-                -webkit-tap-highlight-color: transparent;
-                font-family: "DejaVu Sans", "Times New Roman", Times, serif;
-                padding-left: 2px;
-                width: 95%;
-                margin-left: 2%;
-                margin-right: 2%;
-            }
-
-            .sasana {
-                font-size: x-small;
-                text-align: right;
-                padding: 2px;
-                color: grey;
-            }
-
-            .small {
-                font-size: small;
-                padding: 2px;
-                color: black;
-            }
-
-            .nmo {
-                font-size: small;
-                text-align: center;
-                font-weight: bold;
-                padding: 2px;
-                background: #ccc;
-            }
-
-            #tellFormula {
-                font-size: x-small;
-                padding: 2px;
-                text-align: center;
-            }
-
-            .smm {
-                padding: 2px;
-                text-align: center;
-                color: grey;
-            }
-
-            #inlatlong {
-                font-size: small;
-                padding: 2px;
-                text-align: center;
-            }
-
-            #inplace {
-                font-size: small;
-                padding: 2px;
-                text-align: center;
-            }
-
-            #informula {
-                font-size: small;
-                padding: 2px;
-                text-align: center;
-            }
-
-            .grey {
-                color: grey;
-                font-size: small;
-            }
-
-            /*.even {}.now {}*/
-            .left {
-                text-align: left;
-            }
-
-            .center {
-                text-align: center;
-            }
-
-            .red {
-                color: red;
-                font-weight: bold;
-            }
-
-            .tCenter {
-                margin: 0 auto;
-                font-size: small;
-                color: grey;
-            }
-
-            #disclaimer {
-                font-size: x-small;
-                color: grey;
-                text-align: left;
-            }
-
-            .tRight {
-                text-align: right;
-            }
-
-            .tLeft {
-                text-align: left;
-            }
-
-            .tdButtoncenter {
-                text-align: center;
-            }
-
-            .dawnMonth td {
-                padding: 5px;
-            }
-
-            .bme {
-                border: solid black 1px;
-            }
-
-            .nobor {
-                border: unset;
-                border: dotted brown 2px;
-            }
-
-            .headloca {
-                border: unset;
-            }
-
-            li {
-                margin-left: 0%;
-            }
-        </style>
     </head>
-
     <body>
+    <a name='topPage'></a>
 
-<script>
-/**
- * upCal - single HTML file version 2.4
- * Show Dawnrise calculation and Myanmar Uposatha dates
- * Last modified 2023-07-31
- * Last modified 2021-10-25
- * 
- * Credits & Licenses: see the information below or https://github.com/vpnry/upcal
- * It is a modifed version to use as a single HTML file from upCal iOS Scriptable widget version. 
- * 
- * The code is very very very messy. And I want to keep it as a good memory.
- */
-
-const verTopShow = "v2.4";
-// Do mot change this default errorLocation value
-const errorLocation = 9999.99999;
-
-// Show Nautical and Civil Dawn or not
-let DISPLAYNAU = false;
-let iShowNauCivilDawn = localStorage.getItem("upCal_showNautical");
-
-if (iShowNauCivilDawn === "no") {
-    DISPLAYNAU = false;
-} else if (iShowNauCivilDawn === "yes") {
-    DISPLAYNAU = true;
-} else {
-    DISPLAYNAU = false;
-}
-
-// give location a name
-const HERELOCA = localStorage.getItem("upCal_PlaceName") || "? Give a name";
-
-// formula 1 Dawn = sunrise - x minutes; default x = 40
-let xMinutes = localStorage.getItem("upCal_MinusMinutes") || 40;
-const MMINUS = Math.abs(Number(xMinutes)) || 40;
-
-// formula 2 is Dawn = Sunrise - (Civil dawn - Nautical dawn)
-// when useDFORMULA = true, formula 2 will be used
-
-let useDFORMULA = false;
-const isDFormula = localStorage.getItem("upCal_UseDFormula");
-
-if (isDFormula === "no") {
-    useDFORMULA = false;
-} else if (isDFormula === "yes") {
-    useDFORMULA = true;
-} else {
-    useDFORMULA = false;
-}
-
-
-// load save lat longitude
-const MYLATITUDE = localStorage.getItem("upCal_SavedLatitude") || errorLocation;
-
-const MYLONGITUDE =
-    localStorage.getItem("upCal_SavedLongitude") || errorLocation;
+    <script>
+    /**
+     ****************************
+     * Last modified 2023-10-31 *
+     * Last modified 2023-07-31 *
+     * Last modified 2021-10-25 *
+     ****************************
+     
+     * upCal version 2.5 (single HTML file)
+     * Show Dawnrise calculation
+     * & Myanmar Uposatha dates
+     * https://github.com/vpnry/upcal
+     
+     * =================== *
+     * Credits & Licenses  *
+     * =================== *
+     * See the information below or https://github.com/vpnry/upcal
+     * It is a modifed version to use as a single HTML file from upCal iOS Scriptable widget version. 
+     * The code is very very very messy (many code snippets are written on a phone). Just let it be for memory.
+     */
     
-let ACCURACY = '';
-
-// Monthly min max timetable
-let MINMAXDAWN = [];
-let MINMAXNOON = [];
-
-const deviceGMT = 'GTM' + (new Date()).toString().split('GMT')[1]
-
-//==== GPS 
-function blankPageWhenDetectingGPS() {
-    let body = document.body;
-    body.classList.toggle("darkmode");
-    let btton = document.getElementById("gpsButton");
-    btton.classList.toggle("gpsButtonClass");
-}
-
-function getLocationByGPS() {
-    blankPageWhenDetectingGPS()
-    document.getElementById("gpsButton").textContent = "Detecting, please wait...";
-    const options = {
-        enableHighAccuracy: true,
-        timeout: 480000,
-        maximumAge: 0,
-    };
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            handleSuccess,
-            handleError,
-            options
-        );
+    const verHTMLTopShow = "v2.5";
+    const deviceGMT = 'GTM' + (new Date()).toString().split('GMT')[1];
+    
+    let ACCURACY = '';
+    
+    /* Monthly min max timetable */
+    let MINMAXDAWN = [];
+    let MINMAXNOON = [];
+    
+    /* Do not change this errorLocation default value */
+    const errorLocation = 9999.99999;
+    
+    /* Show Nautical and Civil Dawn or not */
+    let NAUCIVIL_SHOW = false;
+    
+    let NauCivilDawnShowYesNo = localStorage.getItem("upCal_showNautical");
+    if (NauCivilDawnShowYesNo === "no") {
+        NAUCIVIL_SHOW = false;
+    } else if (NauCivilDawnShowYesNo === "yes") {
+        NAUCIVIL_SHOW = true;
     } else {
-        alert("Sorry, it seems that your device does not support geolocation function.");
+        NAUCIVIL_SHOW = false;
     }
-}
+    
+    /* give location a place name */
+    const LOCATION_HERE = localStorage.getItem("upCal_PlaceName") || "?? Give a name";
+    
+    /* formula 1 Dawn = sunrise - x minutes; default x = 40 */
+    let getXMinutes = localStorage.getItem("upCal_MinusMinutes") || 40;
+    const MINUTEX = Math.abs(Number(getXMinutes)) || 40;
+    
+    /* formula 2 is Dawn = Sunrise - (Civil dawn - Nautical dawn) */
+    /* when DYNAMIC_FML = true, formula 2 will be used */
+    /* isDFormula = yes/no */
+    let DYNAMIC_FML = false;
+    const isDFormula = localStorage.getItem("upCal_UseDFormula");
+    
+    if (isDFormula === "no") {
+        DYNAMIC_FML = false;
+    } else if (isDFormula === "yes") {
+        DYNAMIC_FML = true;
+    } else {
+        DYNAMIC_FML = false;
+    }
+    
+    /* load the saved lat longitude */
+    const LAT_HERE = localStorage.getItem("upCal_SavedLatitude") || errorLocation;
+    
+    const LONG_HERE =
+        localStorage.getItem("upCal_SavedLongitude") || errorLocation;
+    
+    </script>
 
-function handleSuccess(res) {
-    let loca = res.coords;
-    let lat = loca["latitude"];
-    let long = loca["longitude"];
-    let acu = loca["accuracy"];
-
-    document.getElementById("lati").value = lat;
-    document.getElementById("longi").value = long;
-    alert(
-        "Successfully set location with GPS location\nPlease give a name for this location, like: My Room"
-    );
-    setTimeout(goSaveAllApplyButton, 500);
-}
-
-function handleError(e) {
-    let instr =
-        "Need to allow GPS (Location info) permission for this app, turn on GPS first. After doing so, please try again. You can also enter the data manually.";
-
-    alert(
-        'Error occured while geting GPS location: "' +
-            e["message"] +
-            '"\n\n' +
-            instr
-    );
-
-    localStorage.removeItem("upCal_SavedLatitude");
-    localStorage.removeItem("upCal_SavedLongitude");
-    location.reload();
-}
-
-</script>
-
-        <div id="upc"></div>
-        <br />
-        <table class="tCenter">
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    Dawnrise (aruṇuggamana) settings
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    <i>Location input</i>
-                </td>
-            </tr>
-            <tr>
-                <td classs="tdButtoncenter" colspan="2"><i>Enter latitude & longitude manually or use the GPS button below to detect.</i></td>
-            </tr>
-            <tr>
-                <td class="tLeft">Use GPS location</td>
-                <td onclick="getLocationByGPS()">
-                    <button id='gpsButton'>Get GPS location 🛰</button>
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Enter latitude</td>
-                <td class="tLeft">
-                    <input
-                        size="15"
-                        id="lati"
-                        type="number"
-                        placeholder="example 19.86"
-                        onchange="goSaveLatLong()"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Enter longitude</td>
-                <td class="tLeft">
-                    <input
-                        size="15"
-                        id="longi"
-                        type="number"
-                        placeholder="example 90.05"
-                        onchange="goSaveLatLong()"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Location name</td>
-                <td class="tLeft">
-                    <input
-                        id="placeName"
-                        size="15"
-                        type="text"
-                        placeholder="name this place?"
-                        onchange="goSavePlaceName()"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    <button onclick="goSaveAllApplyButton()">Apply</button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    <i>Dawnrise calculation formula</i>
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Show Nautical&Civil</td>
-                <td class="tLeft">
-                    <input
-                        id="naucivil"
-                        type="checkbox"
-                        onclick="goSaveShowNauCivil()"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Use - X minutes formula</td>
-                <td class="tLeft">
-                    <input
-                        id="minus40"
-                        type="radio"
-                        name="formula"
-                        onclick="goChooseXMinuteFormula()"
-                    />(default formula)
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Positive X minute value</td>
-                <td class="tLeft">
-                    <input
-                        size="3"
-                        id="saveUserXMinuteInput"
-                        onchange="saveUserXMinuteInput()"
-                        type="number"
-                        value="40"
-                        placeholder="default (Pa-Auk): 40"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td class="tLeft">Use adaptive formula</td>
-                <td class="tLeft">
-                    <input
-                        id="adaptFormula"
-                        type="radio"
-                        name="formula"
-                        onclick="goChooseAdaptFormula()"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    <span id="tellFormula" class="grey"></span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="tdButtoncenter">
-                    <button onclick="goSaveAllApplyButton()">Apply</button>
-                </td>
-            </tr>
-        </table>
-        <hr />
-        <div id="disclaimer" class="tCenter grey">
-            <ul>
-                <li>
-                    <b>Disclaimer</b>: All calculations are for references only.
-                    No warranties! Use with wisdom!
-                </li>
-                <li>
-                    <b>Date & time</b> are shown in your device current time
-                    zone.
-                </li>
-                <br />
-                <li>
-                    To know your latitude & longitude, you can also use
-                    <a
-                        href="https://play.google.com/store/apps/details?id=com.chartcross.gpstest"
-                        target="_blank"
-                        >GPS Test</a
-                    >
-                    app or a supported map app.
-                </li>
-                <li>
-                    To download new versions or get Apple iOS widget versions,
-                    check
-                    <a href="https://github.com/vpnry/upcal" target="_blank"
-                        >upCal repository.</a
-                    >
-                </li>
-                <br />
-                <div id="licenses" style="display: none">
-                    <hr />
-                    upCal is also released under MIT and it uses the following open source libraries:
-                    <pre>
+    <div id="upc"></div>
+    
+    <br />
+    <table class="tCenter">
+        <tr>
+            <td colspan="2" class="tdButtoncenter" style="background:#ccc;">
+                Dawnrise (aruṇuggamana) settings
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tdButtoncenter">
+                <i>Location input</i>
+            </td>
+        </tr>
+        <tr>
+            <td classs="tdButtoncenter" colspan="2"><i>Enter latitude & longitude manually or use the GPS button below to detect.</i></td>
+        </tr>
+        <tr>
+            <td class="tLeft">Use GPS location</td>
+            <td onclick="getLocationByGPS()">
+                <button id='gpsButton'>Get GPS location 🛰</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Enter latitude</td>
+            <td class="tLeft">
+                <input
+                    size="15"
+                    id="lati"
+                    type="number"
+                    placeholder="example 19.86"
+                    onchange="goSaveLatLong()"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Enter longitude</td>
+            <td class="tLeft">
+                <input
+                    size="15"
+                    id="longi"
+                    type="number"
+                    placeholder="example 90.05"
+                    onchange="goSaveLatLong()"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Location name</td>
+            <td class="tLeft">
+                <input
+                    id="placeName"
+                    size="15"
+                    type="text"
+                    placeholder="name this place?"
+                    onchange="goSavePlaceName()"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tdButtoncenter">
+                <button onclick="goSaveAllApplyButton()">Apply</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tdButtoncenter">
+                <i>Dawnrise calculation formula</i>
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Show Nautical&Civil</td>
+            <td class="tLeft">
+                <input
+                    id="naucivil"
+                    type="checkbox"
+                    onclick="goSaveShowNauCivil()"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Use - X minutes formula</td>
+            <td class="tLeft">
+                <input
+                    id="minus40"
+                    type="radio"
+                    name="formula"
+                    onclick="goChooseXMinuteFormula()"
+                />(default formula)
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Positive X minute value</td>
+            <td class="tLeft">
+                <input
+                    size="3"
+                    id="saveUserXMinuteInput"
+                    onchange="saveUserXMinuteInput()"
+                    type="number"
+                    value="40"
+                    placeholder="default (Pa-Auk): 40"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td class="tLeft">Use adaptive formula</td>
+            <td class="tLeft">
+                <input
+                    id="adaptFormula"
+                    type="radio"
+                    name="formula"
+                    onclick="goChooseAdaptFormula()"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td id="tellFormulaTd" colspan="2" class="tdButtoncenter">
+                <span id="tellFormula" class="grey"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tdButtoncenter">
+                <button onclick="goSaveAllApplyButton()">Apply</button>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <div id="disclaimer" class="tCenter grey">
+        <ul>
+            <li>
+                <b>Disclaimer</b>: All calculations are for references only.
+                No warranties! Use with wisdom!
+            </li>
+            <li>
+                <b>Date & time</b> are shown in your device current time
+                zone.
+            </li>
+            <br />
+            <li>
+                To know your latitude & longitude, you can also use
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.chartcross.gpstest"
+                    target="_blank"
+                    >GPS Test</a
+                >
+                app or a supported map app.
+            </li>
+            <li>
+                To <span style="border-bottom: solid 1px red;">                <a href="https://github.com/vpnry/upcal/releases" target="_blank"
+                    >download</a></span> new versions or get Apple iOS widget versions,
+                check
+                <a href="https://github.com/vpnry/upcal" target="_blank"
+                    >upCal repository.</a
+                >
+            </li>
+            <br />
+            <div id="licenses" style="display: none">
+                <hr />
+                upCal is also released under MIT and it uses the following open source libraries:
+                <pre>
 
 + SunCalc (Vladimir Agafonkin)
 + MMCal (Yan Naing Aye)
@@ -479,22 +255,22 @@ SunCalc (Vladimir Agafonkin)
 ----------------------------------------
 
 (c) 2011-2015, Vladimir Agafonkin
- SunCalc is a JavaScript library for calculating sun/moon position and light phases.
- https://github.com/mourner/suncalc
- 
- 
+SunCalc is a JavaScript library for calculating sun/moon position and light phases.
+https://github.com/mourner/suncalc
+
+
 Copyright (c) 2014, Vladimir Agafonkin
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are
 permitted provided that the following conditions are met:
 
-   1. Redistributions of source code must retain the above copyright notice, this list of
-      conditions and the following disclaimer.
+1. Redistributions of source code must retain the above copyright notice, this list of
+  conditions and the following disclaimer.
 
-   2. Redistributions in binary form must reproduce the above copyright notice, this list
-      of conditions and the following disclaimer in the documentation and/or other materials
-      provided with the distribution.
+2. Redistributions in binary form must reproduce the above copyright notice, this list
+  of conditions and the following disclaimer in the documentation and/or other materials
+  provided with the distribution.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
 EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
@@ -540,123 +316,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-</pre
-                    >
-                </div>
-                <li onclick="vlicense()">
-                    To view open source licenses, click here.
-                </li>
-            </ul>
-            <br />
-        </div>
-
+</pre>
+            </div>
+            <li onclick="vlicense()">
+                To view open source licenses, click here.
+            </li>
+        </ul>
+        <br />
+</div>
 
 <script>
-
-
-function vlicense() {
-    document.getElementById("licenses").style.display = "";
-}
-
-function isNumber(n) {
-    return !isNaN(n);
-}
-
-function goSaveShowNauCivil() {
-    let x = document.getElementById("naucivil").checked;
-    if (x) {
-        localStorage.setItem("upCal_showNautical", "yes");
-    } else {
-        localStorage.setItem("upCal_showNautical", "no");
-    }
-}
-
-function goChooseXMinuteFormula() {
-    localStorage.setItem("upCal_UseDFormula", "no");
-
-    document.getElementById("createWholeMonthDawn").innerHTML = "";
-    if (MYLATITUDE != errorLocation && MYLONGITUDE != errorLocation) {
-        location.reload();
-    } else {
-        //alert("Check your location latitude or longitude input");
-    }
-}
-
-function goChooseAdaptFormula() {
-    localStorage.setItem("upCal_UseDFormula", "yes");
-
-    document.getElementById("createWholeMonthDawn").innerHTML = "";
-    if (MYLATITUDE != errorLocation && MYLONGITUDE != errorLocation) {
-        location.reload();
-    } else {
-        //alert("Check your location latitude or longitude input");
-    }
-}
-
-function goSaveLatLong() {
-    let lati = document.getElementById("lati").value;
-
-    if (lati !== null) {
-        lati = lati.trim();
-    }
-
-    if (!isNumber(Number(lati)) || lati === null || lati === "") {
-        alert("Latitude must be a number, for example: 19.86");
-        lati = errorLocation;
-    }
-
-    let longi = document.getElementById("longi").value;
-    if (longi !== null) {
-        longi = longi.trim();
-    }
-
-    if (!isNumber(Number(longi)) || longi === null || longi === "") {
-        alert("Longitude must be a number, for example: 90.05");
-
-        longi = errorLocation;
-    }
-
-    localStorage.setItem("upCal_SavedLatitude", lati);
-    localStorage.setItem("upCal_SavedLongitude", longi);
-}
-
-function goSavePlaceName() {
-    let x = document.getElementById("placeName").value;
-    if (x === "") {
-        alert("Give it a short name, for example, My Room");
-        x = "?? Give a Name";
-    } else {
-        x = x.trim();
-    }
-
-    localStorage.setItem("upCal_PlaceName", x);
-}
-
-function goSaveAllApplyButton() {
-    goSavePlaceName();
-    goSaveLatLong();
-    saveUserXMinuteInput();
-    location.reload();
-}
-
-function saveUserXMinuteInput() {
-    let x = document.getElementById("saveUserXMinuteInput").value;
-
-    if (!isNumber(Number(x)) || x === "" || Number(x) < 0) {
-        alert(
-            "Invalid number input. It must be an positive integer number, for example: 40"
-        );
-        x = 40;
-    } else {
-        x = Number(x);
-    }
-
-    x = Math.abs(x);
-
-    localStorage.setItem("upCal_MinusMinutes", x);
-}
-
 /*---------------------------------------------------------------------
+ * iOS widget module
  * Upcal - https://github.com/vpnry/upcal
  * Description: Uposatha calendar and dawn time widget in Scriptable app Apple IOS
  * Initial: 03 Oct 2020
@@ -673,760 +344,944 @@ function saveUserXMinuteInput() {
  * https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e
  *--------------------------------------------------------------------*/
 
-const thisAppVersion = 2;
-const thisAppVersionDate = "(2021-01-20)";
-const jsonParsePoint = "u@pc@l";
-const upcalRepos = "https://vpnry.github.io/upcal";
 let p_countGMTDate, countGMTDate;
 
-//--------------------------------------------------------------------
-// countGMTDate: count days for an event: ordination date etc..
-// trictly follow the example date format & update GMT timezone
-//--------------------------------------------------------------------
+/*-------------------------------------------------------------------- */
+/* countGMTDate: count days for an event: ordination date etc.. */
+/* trictly follow the example date format & update GMT timezone */
+/*-------------------------------------------------------------------- */
 
-// uncomment the below code line to overwrite u_monthUposathaTitle
-// countGMTDate = new Date("October 10, 2020 20:20:20 GMT+06:30");
+/* uncomment the countGMTDate line code line to overwrite u_monthUposathaTitle */
+// countGMTDate = new Date("October 10, 2020 20:20:20 GMT+06:30"); 
 
 if (countGMTDate) {
-    let cdays = (Date.now() - countGMTDate) / (24 * 60 * 60 * 1000);
-    p_countGMTDate = f3dits(cdays) + " days since v1 birthday";
+  let cdays = (Date.now() - countGMTDate) / (24 * 60 * 60 * 1000);
+  p_countGMTDate = f3dits(cdays) + " days since v1 birthday";
 }
 
-//--------------------------------------------------------------------
-// DISPLAY UI STRINGS
-//--------------------------------------------------------------------
+/*------------------- */
+/* DISPLAY UI STRINGS */
+/*------------------- */
+
+/* Do not add "  " double spaces into these vars */
+const icon_upCal = String.fromCodePoint(127749); /* 🌅 */
+const icon_cal = String.fromCodePoint(128467); /* 🗓 */
+
+const u_FMPatimokkha = String.fromCodePoint(127765); /* 🌕 */
+const u_NMPatimokkha = String.fromCodePoint(128309); /* 🔵 */
+const u_WaxingQuarter = String.fromCodePoint(127763); /* 🌓 */
+const u_WaningQuarter = String.fromCodePoint(127767); /* 🌗 */
+const icon_calm = String.fromCodePoint(128524); /* 🔆 */
+const icon_lightsun = String.fromCodePoint(128262); /* 🔆 */
+const icon_spin = String.fromCodePoint(128205); /* 📍 */
+const icon_star = String.fromCodePoint(10024); /* ✨ */
+const icon_wheel = String.fromCodePoint(9784); /* ☸ */
+const icon_vs = String.fromCodePoint(127386); /* 🆚 */
+const icon_next = String.fromCodePoint(9197) + String.fromCodePoint(65039); /* ⏭️ */
 
 const u_DateDiv = ".";
 const u_WidgetBackgroundColor = "black";
-const u_TodayDawnTime = "Today at";
-const u_SasanaYear = "Sasana year ";
+const u_TodayDawnTime = `Today at`;
+const u_SasanaYear = "Sāsana year ";
 
 const u_dayth = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const u_iMonths = [
-    "1-Jan",
-    "2-Feb",
-    "3-Mar",
-    "4-Apr",
-    "5-May",
-    "6-Jun",
-    "7-Jul",
-    "8-Aug",
-    "9-Sep",
-    "10-Oct",
-    "11-Nov",
-    "12-Dec",
-];
-const u_shortMonth = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-];
-//const u_shortMonth = createMonthNamesLocale();
-let u_monthUposathaTitleTex = `Myanmar - Uposatha Dates`;
-const u_monthUposathaTitle =
-    '<span class="small">' + u_monthUposathaTitleTex + "</span>";
-// Do not add "  " double spaces into these vars
 
-const u_FMPatimokkha = String.fromCodePoint(127765); // 🌕
-const u_NMPatimokkha = String.fromCodePoint(128309); // 🔵
-const u_WaxingQuarter = String.fromCodePoint(127763); // 🌓
-const u_WaningQuarter = String.fromCodePoint(127767); // 🌗
-const icon_upCal = String.fromCodePoint(127749); // 🌅
-const icon_spin = String.fromCodePoint(128205); // 📍
-const icon_star = String.fromCodePoint(10024); // ✨
+const u_iMonths = ["1-Jan", "2-Feb", "3-Mar", "4-Apr", "5-May", "6-Jun", "7-Jul", "8-Aug", "9-Sep", "10-Oct", "11-Nov", "12-Dec"];
+const u_shortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const adjFontSize = 1;
-const fSize12 = newFSize(12, adjFontSize);
-const fSize14 = newFSize(14, adjFontSize);
-const fSize16 = newFSize(16, adjFontSize);
-const fSize18 = newFSize(18, adjFontSize);
+let u_monthUposathaTitleTex = `Myanmar - Uposatha Dates ${icon_cal}`;
+const u_monthUposathaTitle = '<span class="small">' + u_monthUposathaTitleTex + "</span>";
 
-let sasanaYearNow = "";
+let sasanaYearNow = (showFormula = tellClickMarkDate = "");
 
-//--------------------------------------------------------------------
-// EXPORTS upCAL
-//--------------------------------------------------------------------
+/* min, max: Western year, like 2023, range for marking vassa dates */
+const minLT = 1900, maxUT = 2139;
 
-//--------------------------------------------------------------------
-// HELPER FUNCTIONS AND APP LIBRARIES
-// DO NOT RENAME, OR BE MORE CAREFUL WHEN MODIFY THEM
-//--------------------------------------------------------------------
+const adjFontSize = 1,
+  fSize12 = newFSize(12, adjFontSize),
+  fSize14 = newFSize(14, adjFontSize),
+  fSize16 = newFSize(16, adjFontSize),
+  fSize18 = newFSize(18, adjFontSize);
 
+/* hoisting ussāpenta the ceMmDateTime class */
+const ceMmDateTime = returnClass_ceMmDateTime();
+
+/*-------------------------------*/
+/* GPS via navigator.geolocation */
+/*-------------------------------*/
+/* function blankPageWhenDetectingGPS() {
+  let body = document.body;
+  body.classList.toggle("darkmode");
+  let btton = document.getElementById("gpsButton");
+  btton.classList.toggle("gpsButtonClass");
+} */
+
+function getLocationByGPS() {
+  /* blankPageWhenDetectingGPS() */
+  document.getElementById("gpsButton").textContent = `DETECTING, please wait ${icon_calm}...`;
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 480000,
+    maximumAge: 0,
+  };
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
+  } else {
+    alert("Sorry, it seems that your device does not support geolocation function.");
+  }
+}
+
+function handleSuccess(res) {
+  let loca = res.coords;
+  let lat = loca["latitude"];
+  let long = loca["longitude"];
+  let acu = loca["accuracy"];
+
+  document.getElementById("lati").value = lat;
+  document.getElementById("longi").value = long;
+  alert(`Successfully set location with GPS location ${acu}.\nPlease give a place name for this location, for example: My Room`);
+  setTimeout(goSaveAllApplyButton, 500);
+}
+
+function handleError(e) {
+  let instr = `Please check: (1) Need to allow GPS (Location) permission for this app, (2) TURN ON GPS FIRST and wait for a while, (3) try upCal again.\n----------\----------\nTip: open a Maps app & detect your location successfully there first, then try upCal again.\nYou can also enter the location data manually ${icon_calm}.`;
+  
+  alert(`🛰 GPS Error: ${e["message"]}` + '\n\n' + instr);
+
+  localStorage.removeItem("upCal_SavedLatitude");
+  localStorage.removeItem("upCal_SavedLongitude");
+  location.reload();
+}
+
+
+/*-------------------------------*/
+/* UI FUNCTIONS */
+/*-------------------------------*/
+function vlicense() {
+  document.getElementById("licenses").style.display = "";
+}
+
+function isNumber(n) {
+  return !isNaN(n);
+}
+
+function goSaveShowNauCivil() {
+  let x = document.getElementById("naucivil").checked;
+  if (x) {
+    localStorage.setItem("upCal_showNautical", "yes");
+  } else {
+    localStorage.setItem("upCal_showNautical", "no");
+  }
+}
+
+function goChooseXMinuteFormula() {
+  localStorage.setItem("upCal_UseDFormula", "no");
+
+  document.getElementById("createWholeMonthDawn").innerHTML = "";
+  if (LAT_HERE != errorLocation && LONG_HERE != errorLocation) {
+    location.reload();
+  } else {
+    /* alert("Check your location latitude or longitude input"); */
+  }
+}
+
+function goChooseAdaptFormula() {
+  localStorage.setItem("upCal_UseDFormula", "yes");
+
+  document.getElementById("createWholeMonthDawn").innerHTML = "";
+  if (LAT_HERE != errorLocation && LONG_HERE != errorLocation) {
+    location.reload();
+  } else {
+    /* alert("Check your location latitude or longitude input"); */
+  }
+}
+
+function goSaveLatLong() {
+  let lati = document.getElementById("lati").value;
+
+  if (lati !== null) {
+    lati = lati.trim();
+  }
+
+  if (!isNumber(Number(lati)) || lati === null || lati === "") {
+    alert("Latitude must be a number, for example: 19.86");
+    lati = errorLocation;
+  }
+
+  let longi = document.getElementById("longi").value;
+  if (longi !== null) {
+    longi = longi.trim();
+  }
+
+  if (!isNumber(Number(longi)) || longi === null || longi === "") {
+    alert("Longitude must be a number, for example: 90.05");
+
+    longi = errorLocation;
+  }
+
+  localStorage.setItem("upCal_SavedLatitude", lati);
+  localStorage.setItem("upCal_SavedLongitude", longi);
+}
+
+function goSavePlaceName() {
+  let x = document.getElementById("placeName").value;
+  if (x === "") {
+    alert(`Give this location a short name, for example:\n\nMy Room ${icon_lightsun}`);
+    x = "?? name this place";
+  } else {
+    x = x.trim();
+  }
+
+  localStorage.setItem("upCal_PlaceName", x);
+}
+
+function goSaveAllApplyButton() {
+  goSavePlaceName();
+  goSaveLatLong();
+  saveUserXMinuteInput();
+  location.reload();
+}
+
+function saveUserXMinuteInput() {
+  let x = document.getElementById("saveUserXMinuteInput").value;
+
+  if (!isNumber(Number(x)) || x === "" || Number(x) < 0) {
+    alert("Invalid number input. It must be an positive integer number, for example: 40");
+    x = 40;
+  } else {
+    x = Number(x);
+  }
+
+  x = Math.abs(x);
+
+  localStorage.setItem("upCal_MinusMinutes", x);
+}
+
+/*-------------------------------*/
+/* CORE FUNCTIONS & LIBRARIES */
+/* DO NOT RENAME, OR BE MORE
+   CAREFUL WHEN MODIFY THEM */
+/*-------------------------------*/
 function loadLatlongInPut() {
-    // Show val in input
-    document.getElementById("lati").value = MYLATITUDE;
-    document.getElementById("longi").value = MYLONGITUDE;
+  /* Show val in input */
+  document.getElementById("lati").value = LAT_HERE;
+  document.getElementById("longi").value = LONG_HERE;
 }
 loadLatlongInPut();
 
 function loadCheckedDawnCal() {
-    // show checked formula
-    let checkedFormula = "minus40";
-    if (useDFORMULA) {
-        checkedFormula = "adaptFormula";
-    }
-    document.getElementById(checkedFormula).checked = true;
+  /* show checked formula */
+  let checkedFormula = "minus40";
+  if (DYNAMIC_FML) {
+    checkedFormula = "adaptFormula";
+  }
+  document.getElementById(checkedFormula).checked = true;
 
-    document.getElementById("saveUserXMinuteInput").value = MMINUS;
+  document.getElementById("saveUserXMinuteInput").value = MINUTEX;
 
-    if (DISPLAYNAU) {
-        document.getElementById("naucivil").checked = true;
-    }
+  if (NAUCIVIL_SHOW) {
+    document.getElementById("naucivil").checked = true;
+  }
 }
 loadCheckedDawnCal();
 
 function reLoadShowPlaceNameValue() {
-    document.getElementById("placeName").value = HERELOCA;
+  document.getElementById("placeName").value = LOCATION_HERE;
 }
 reLoadShowPlaceNameValue();
 
-let showFormula = "";
-if (useDFORMULA) {
-    showFormula = "Dawnrise = Sunrise - (Civil dawn - Nautical dawn)";
+if (DYNAMIC_FML) {
+  showFormula = "Dawnrise = Sunrise - (Civil dawn - Nautical dawn)";
 } else {
-    showFormula = `Dawnrise = Sunrise - ${MMINUS} minutes.`;
+  showFormula = `Dawnrise = Sunrise - ${MINUTEX} minutes.`;
 }
 
 function runningClock(id) {
-    let ele = document.getElementById(id);
-    function updateTime() {
-        let D = new Date();
-        let t =
-            f2d(D.getHours()) +
-            " : " +
-            f2d(D.getMinutes()) +
-            " : " +
-            f2d(D.getSeconds());
-        ele.textContent = t;
-    }
-    setInterval(updateTime, 1000);
+  let ele = document.getElementById(id);
+  function updateTime() {
+    let D = new Date();
+    let t = f2d(D.getHours()) + " : " + f2d(D.getMinutes()) + " : " + f2d(D.getSeconds());
+    ele.textContent = t;
+  }
+
+  /* first run, call to make it shows immediately */
+  updateTime();
+  /* So that it will no stand still */
+  setTimeout(updateTime, 150);
+  /* loop */
+  setInterval(updateTime, 200);
 }
 
 (function runApp() {
-    
-    let todayShow = createUpCalMonth();
-    
-    document.getElementById(
-        "tellFormula"
-    ).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}<br>Using formula: ${showFormula}<br>`;
-    document.getElementById("upc").innerHTML =
-        todayShow +
-        "<p onclick='createWholeYearTable()' style='text-align:center;font-size:small;'>View Yearly Uposatha Dates<div id='createWholeYearTable' class='r entireyear'></div></p>" +
-        "<p onclick='createWholeMonthDawn()' style='text-align:center;font-size:small;'>View Monthly Timetable<div id='createWholeMonthDawn'></div></p>";
-    runningClock("idclock");
+  let todayShow = createUpCalMonth();
+
+  document.getElementById(
+    "tellFormula"
+  ).innerHTML = `Your dawnrise <i>(aruṇuggamana)</i> calculation is:<br>Using Latitude: ${LAT_HERE} Longitude: ${LONG_HERE}<br>Using formula: ${showFormula}<br>`;
+
+  const listUpoYearTag = `<a name="createWholeYearTable"></a><p onclick='createWholeYearTable()' style='text-align:center;font-size:small;'>View Yearly Uposatha Dates<div id='createWholeYearTable' class='r entireyear'></div></p>`;
+
+  const listTimetableTag = `<a name="createWholeMonthDawn"></a><p onclick='createWholeMonthDawn()' style='text-align:center;font-size:small;'>View Monthly Timetable<div id='createWholeMonthDawn'></div></p>`;
+
+  document.getElementById("upc").innerHTML = todayShow + listUpoYearTag + listTimetableTag;
+
+  runningClock("idclock");
 })();
 
 function createWholeMonthDawn() {
-    let cddt = new Date();
-    let thisYear = cddt.getFullYear();
-    let cDeviceMonth = cddt.getMonth();
+  let cddt = new Date();
+  let thisYear = cddt.getFullYear();
+  let cDeviceMonth = cddt.getMonth();
 
-    let dailyMonth = prompt(
-        "Enter a month number [1-12], for example: " +
-            u_shortMonth[cDeviceMonth] +
-            ", enter: " +
-            (cDeviceMonth + 1),
-        cDeviceMonth + 1
+  let dailyMonth = prompt(`${icon_upCal} Enter a month number [1-12], for example: ` + u_shortMonth[cDeviceMonth] + ", enter: " + (cDeviceMonth + 1), cDeviceMonth + 1);
+
+  if (dailyMonth == undefined) {
+    return;
+  }
+
+  if (dailyMonth !== null) {
+    dailyMonth = dailyMonth.trim();
+  }
+
+  if (!isNumber(Number(dailyMonth)) || dailyMonth == undefined) {
+    alert(
+      "Invalid month number input. It must be a number [1-12], for example (" +
+        u_shortMonth[cDeviceMonth] +
+        "): " +
+        (cDeviceMonth + 1) +
+        "\n\nNow use the current month: " +
+        (cDeviceMonth + 1)
     );
+    dailyMonth = cDeviceMonth + 1;
+  }
 
-    if (dailyMonth !== null) {
-        dailyMonth = dailyMonth.trim();
-    }
+  if (Number(dailyMonth) < 1 || Number(dailyMonth) > 12) {
+    alert(
+      "Invalid month number input. It must be a number [1-12], for example (" +
+        u_shortMonth[cDeviceMonth] +
+        "): " +
+        (cDeviceMonth + 1) +
+        "\n\nNow use the current month: " +
+        (cDeviceMonth + 1)
+    );
+    dailyMonth = cDeviceMonth + 1;
+  }
 
-    if (!isNumber(Number(dailyMonth)) || dailyMonth === null) {
-        alert(
-            "Invalid month number input. It must be a number [1-12], for example (" +
-                u_shortMonth[cDeviceMonth] +
-                "): " +
-                (cDeviceMonth + 1) +
-                "\n\nNow use current month: " +
-                (cDeviceMonth + 1)
-        );
-        dailyMonth = cDeviceMonth + 1;
-    }
+  dailyMonth = Number(dailyMonth);
+  thisYear = Number(thisYear);
 
-    if (dailyMonth < 1 || dailyMonth > 12) {
-        alert(
-            "Month must be a number 1-12 [January = 1]. Now use the current month"
-        );
-        dailyMonth = cDeviceMonth + 1;
-    }
+  let dawnText = `<p onclick="clearHTMLScrollTop('createWholeMonthDawn')" style="text-align:center;background:#ccc;font-weight:bold;">🌅 Timetable in ${
+    u_shortMonth[dailyMonth - 1]
+  }, ${thisYear}</p>`;
 
-    dailyMonth = Number(dailyMonth);
+  dawnText += getEntireMonthDawnStr(thisYear, dailyMonth);
 
-    thisYear = Number(thisYear);
+  let x = `<div style="text-align:center;"><span class="closetable" onclick="clearHTMLScrollTop('createWholeMonthDawn')">Close Timetable</span></div>`;
 
-    let dawnText = `<p style="text-align:left;background:#ccc;font-weight:bold;">🌅 Timetable in ${
-        u_shortMonth[dailyMonth - 1]
-    }, ${thisYear}</p>`;
+  document.getElementById("createWholeMonthDawn").innerHTML = "<hr>" + x + dawnText + "<hr>" + x;
 
-    dawnText += getEntireMonthDawnStr(thisYear, dailyMonth);
+  gotoAName("createWholeMonthDawn");
 
-    document.getElementById("createWholeMonthDawn").innerHTML = dawnText;
-
-    return dawnText;
+  return dawnText;
 }
 
 function getEntireMonthDawnStr(ayear, mIndex) {
-    // Passing human month, need to -1 for zero based computer month
+  /* Using common month number input, need to -1 for zero based computer month */
 
-    let res = "";
-    // reset Min max
-    MINMAXNOON = [];
+  let res = "";
+  /* reset Min max */
+  MINMAXNOON = [];
+  MINMAXDAWN = [];
 
-    MINMAXDAWN = [];
+  if (!isNumber(Number(mIndex)) || mIndex === null || mIndex === "") {
+    alert("Month must be a number 1-12 [January = 1]");
+    return "Month must be a number 1-12 [January = 1]";
+  }
 
-    if (!isNumber(Number(mIndex)) || mIndex === null || mIndex === "") {
-        alert("Month must be a number 1-12 [January = 1]");
-        return "Month must be a number 1-12 [January = 1]";
+  if (mIndex < 1 || mIndex > 12) {
+    alert("Month must be a number 1-12 [January = 1]");
+    return "Month must be a number 1-12 [January = 1]";
+  }
+
+  if (!isNumber(Number(ayear)) || ayear === null || ayear === "") {
+    alert("Invalid year");
+    return "Invalid year number";
+  }
+
+  ayear = Number(ayear);
+
+  /* new Date uses zero index */
+  mIndex = Number(mIndex) - 1;
+  mIndex = Number(mIndex);
+
+  let i = 1;
+
+  /* SunCalc is inconsistent in yielding results. */
+  /* The same date object with different hour and minute may have different calculations for sunrise. */
+  /* So must set HMS same to the widget */
+
+  let fday = new Date(ayear, mIndex, i, 12, 12, 12);
+
+  while (fday.getMonth() == mIndex) {
+    let d = getDawnAnyDateArray(fday, LAT_HERE, LONG_HERE);
+    if (i % 2 != 0) {
+      res += "<tr>";
+    }
+    res += '<td class="bme">' + f2d(i) + "-" + f2d(mIndex + 1) + "-" + ayear + "<hr>" + handleDawnHTML(d) + "</td>";
+
+    if (i % 2 != 0) {
+      res += "<td></td>";
     }
 
-    if (mIndex < 1 || mIndex > 12) {
-        alert("Month must be a number 1-12 [January = 1]");
-        return "Month must be a number 1-12 [January = 1]";
+    if (i % 2 == 0) {
+      res += "</tr>";
     }
 
-    if (!isNumber(Number(ayear)) || ayear === null || ayear === "") {
-        alert("Invalid year");
-        return "Invalid year number";
-    }
+    i++;
+    fday = new Date(ayear, mIndex, i, 12, 12, 12);
+  }
 
-    ayear = Number(ayear);
+  let mmdawn = "<b>Dawnrise overall</b><br>(in " + u_shortMonth[mIndex] + ", " + ayear + ")<hr>" + handleMinMaxArrayNumber(MINMAXDAWN);
 
-    // new Date uses zero index
-    mIndex = Number(mIndex) - 1;
-    mIndex = Number(mIndex);
+  let mmnoon = "<b>Solar Noon overall</b><br>(in " + u_shortMonth[mIndex] + ", " + ayear + ")<hr>" + handleMinMaxArrayNumber(MINMAXNOON);
 
-    let i = 1;
-
-    // SunCalc is inconsistent in yielding results.
-    // The same date object with different hour and minute will have different calculations for sunrise.
-    // So must set HMS same to the widget
-
-    let fday = new Date(ayear, mIndex, i, 12, 12, 12);
-
-    while (fday.getMonth() == mIndex) {
-        let d = getDawnAnyDateArray(fday, MYLATITUDE, MYLONGITUDE);
-        if (i % 2 != 0) {
-            res += "<tr>";
-        }
-        res +=
-            '<td class="bme">' +
-            f2d(i) +
-            "-" +
-            f2d(mIndex + 1) +
-            "-" +
-            ayear +
-            "<hr>" +
-            handleDawnHTML(d) +
-            "</td>";
-
-        if (i % 2 != 0) {
-            res += "<td></td>";
-        }
-
-        if (i % 2 == 0) {
-            res += "</tr>";
-        }
-
-        i++;
-        fday = new Date(ayear, mIndex, i, 12, 12, 12);
-    }
-
-    let mmdawn =
-        "<b>Dawnrise overall</b><br>(in " +
-        u_shortMonth[mIndex] +
-        ", " +
-        ayear +
-        ")<hr>" +
-        handleMinMaxArrayNumber(MINMAXDAWN);
-
-    let mmnoon =
-        "<b>Solar Noon overall</b><br>(in " +
-        u_shortMonth[mIndex] +
-        ", " +
-        ayear +
-        ")<hr>" +
-        handleMinMaxArrayNumber(MINMAXNOON);
-
-    let tellMinmax = `<tr><td class="bme headloca" colspan="3">📍<i>Latitude: ${MYLATITUDE} Longitude: ${MYLONGITUDE}</i></td>
+  let tellMinmax = `<tr><td class="bme headloca" colspan="3">📍<i>Latitude: ${LAT_HERE} Longitude: ${LONG_HERE}</i></td>
     </tr>
     <tr><td class="bme nobor"><i>${mmdawn}</i></td><td></td><td class="bme nobor"><i>${mmnoon}</i></td></tr><tr><td colspan="3"><hr width="95%" color=""></td></tr>`;
 
-    let x = '<table class="dawnMonth">' + tellMinmax + res + "</table>";
+  let x = '<table class="dawnMonth">' + tellMinmax + res + "</table>";
 
-    return x;
+  return x;
+}
+
+function m2hm(totalM) {
+  let minute = totalM % 60;
+  let hour = (totalM - minute) / 60;
+  return [hour, minute];
 }
 
 function handleMinMaxArrayNumber(n) {
-    if (!Array.isArray(n)) return "Not an array";
+  if (!Array.isArray(n)) return "Not an array";
 
-    let minn = Math.min(...n);
-    if (!isNumber(Number(minn))) {
-        minn = "invalid min";
-    } else {
-        minn = f2d((minn - (minn % 60)) / 60) + ":" + f2d(minn % 60);
-    }
+  let minn = Math.min(...n);
+  if (!isNumber(Number(minn))) {
+    minn = "invalid min";
+  } else {
+    /* See m2hm function to understand this 1 line code */
+    minn = f2d((minn - (minn % 60)) / 60) + ":" + f2d(minn % 60);
+  }
 
-    let maxn = Math.max(...n);
-    if (!isNumber(Number(maxn))) {
-        maxn = "invalid max";
-    } else {
-        maxn = f2d((maxn - (maxn % 60)) / 60) + ":" + f2d(maxn % 60);
-    }
+  let maxn = Math.max(...n);
+  if (!isNumber(Number(maxn))) {
+    maxn = "invalid max";
+  } else {
+    maxn = f2d((maxn - (maxn % 60)) / 60) + ":" + f2d(maxn % 60);
+  }
 
-    return `${minn} Min<br>${maxn} Max`;
+  return `${minn} Min<br>${maxn} Max`;
 }
 
 function getDawnAnyDateArray(
-    anyDateObj,
-    userlat,
-    userlong,
-    userheight = 0,
-    u_DawnMinus = MMINUS,
-    useDynamicDawn_Formula2 = useDFORMULA,
-    displayNauticalCivilDawn = DISPLAYNAU
+  anyDateObj,
+  userlat,
+  userlong,
+  userheight = 0,
+  u_DawnMinus = MINUTEX,
+  useDynamicDawn_Formula2 = DYNAMIC_FML,
+  displayNauticalCivilDawn = NAUCIVIL_SHOW
 ) {
-  // for time table
-    if (userlat == errorLocation || userlong == errorLocation) {
-        return [
-            `Cannot calculate dawnrise`,
-            `please provide:`,
-            `+ GPS latitude number`,
-            `+ GPS longitude number`,
-        ];
-    }
-    const SunCalc = returnSunCalc();
-    const times = SunCalc.getTimes(anyDateObj, userlat, userlong, userheight);
+  /* for time table */
+  if (userlat == errorLocation || userlong == errorLocation) {
+    return [`Cannot calculate dawnrise`, `please provide:`, `+ GPS latitude number`, `+ GPS longitude number`];
+  }
 
-    // const appdawn = f2d(times.dawn.getHours()) + ":" + f2d(times.dawn.getMinutes())
+  const SunCalc = returnSunCalc();
 
-    let sunrise =
-        f2d(times.sunrise.getHours()) + ":" + f2d(times.sunrise.getMinutes());
+  const times = SunCalc.getTimes(anyDateObj, userlat, userlong, userheight);
 
-    // for example 40 minutes in mcsec = 2400000
-    const userDawn = new Date(
-        times.sunrise.getTime() - Number(u_DawnMinus) * 60 * 1000
-    );
+  /* const appdawn = f2d(times.dawn.getHours()) + ":" + f2d(times.dawn.getMinutes()) */
 
-    let nauticalDawn = times.nauticalDawn.getTime();
-    let civilDawn = times.dawn.getTime();
-    // Formula 2 dawn time = sunrise - (civil dawn - nautical dawn)
-    const formula2_DawnMinus = civilDawn - nauticalDawn;
-    const userDawn2 = new Date(
-        times.sunrise.getTime() - Number(formula2_DawnMinus)
-    );
+  let sunrise = f2d(times.sunrise.getHours()) + ":" + f2d(times.sunrise.getMinutes());
 
-    nauticalDawn = new Date(nauticalDawn);
-    civilDawn = new Date(civilDawn);
+  /* for example 40 minutes in mcsec = 2400000 */
+  const userDawn = new Date(times.sunrise.getTime() - Number(u_DawnMinus) * 60 * 1000);
 
-    let userDawnValue =
-        f2d(userDawn.getHours()) + ":" + f2d(userDawn.getMinutes());
+  let nauticalDawn = times.nauticalDawn.getTime();
+  let civilDawn = times.dawn.getTime();
+  /* Formula 2 dawn time = sunrise - (civil dawn - nautical dawn) */
+  const formula2_DawnMinus = civilDawn - nauticalDawn;
+  const userDawn2 = new Date(times.sunrise.getTime() - Number(formula2_DawnMinus));
 
-    const nauticalValue =
-        f2d(nauticalDawn.getHours()) + ":" + f2d(nauticalDawn.getMinutes());
+  nauticalDawn = new Date(nauticalDawn);
+  civilDawn = new Date(civilDawn);
 
-    const civilValue =
-         f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
+  let userDawnValue = f2d(userDawn.getHours()) + ":" + f2d(userDawn.getMinutes());
 
-    let userDawnValue2 =
-        f2d(userDawn2.getHours()) + ":" + f2d(userDawn2.getMinutes());
+  const nauticalValue = f2d(nauticalDawn.getHours()) + ":" + f2d(nauticalDawn.getMinutes());
 
-    const solarNoon =
-        f2d(times.solarNoon.getHours()) +
-        ":" +
-        f2d(times.solarNoon.getMinutes());
+  const civilValue = f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
 
-    const sunset =
-        f2d(times.sunset.getHours()) + ":" + f2d(times.sunset.getMinutes());
+  let userDawnValue2 = f2d(userDawn2.getHours()) + ":" + f2d(userDawn2.getMinutes());
 
-    if (useDynamicDawn_Formula2) {
-        userDawnValue = userDawnValue2;
-        MINMAXDAWN.push(userDawn2.getHours() * 60 + userDawn2.getMinutes());
-    } else {
-        MINMAXDAWN.push(userDawn.getHours() * 60 + userDawn.getMinutes());
-    }
+  const solarNoon = f2d(times.solarNoon.getHours()) + ":" + f2d(times.solarNoon.getMinutes());
 
-    MINMAXNOON.push(
-        times.solarNoon.getHours() * 60 + times.solarNoon.getMinutes()
-    );
+  const sunset = f2d(times.sunset.getHours()) + ":" + f2d(times.sunset.getMinutes());
 
-    if (displayNauticalCivilDawn) {
-        return [
-            `${userDawnValue} Dawnrise`,
-            /*`${userDawnValue2} Dawn`,*/
-            `${nauticalValue} Nautical`,
-            `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
-            `${sunrise} Sunrise`,
-            `${solarNoon} Noon`,
-            `${sunset} Set`,
-        ];
-    }
+  if (useDynamicDawn_Formula2) {
+    userDawnValue = userDawnValue2;
+    MINMAXDAWN.push(userDawn2.getHours() * 60 + userDawn2.getMinutes());
+  } else {
+    MINMAXDAWN.push(userDawn.getHours() * 60 + userDawn.getMinutes());
+  }
 
+  MINMAXNOON.push(times.solarNoon.getHours() * 60 + times.solarNoon.getMinutes());
+
+  if (displayNauticalCivilDawn) {
     return [
-        `${userDawnValue} Dawnrise` /*`${userDawnValue2} Dawn`,*/,
-        `${sunrise} Sunrise`,
-        `${solarNoon} Noon`,
-        `${sunset} Set`,
+      `${userDawnValue} Dawnrise`,
+      /* `${userDawnValue2} Dawn`, */
+      `${nauticalValue} Nautical`,
+      `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
+      `${sunrise} Sunrise`,
+      `${solarNoon} Noon`,
+      `${sunset} Set`,
     ];
+  }
+
+  return [`${userDawnValue} Dawnrise` /* `${userDawnValue2} Dawn`, */, `${sunrise} Sunrise`, `${solarNoon} Noon`, `${sunset} Set`];
 }
 
 function createWholeYearTable() {
-    let cddt = new Date();
-    let cDeviceYear = cddt.getFullYear();
-    let cDeviceMonth = cddt.getMonth();
-    let thisYear = cDeviceYear;
-    let enterY = prompt(
-        "Enter a year number, for example: " + cDeviceYear,
-        thisYear
-    );
+  let cddt = new Date();
+  let cDeviceYear = cddt.getFullYear();
+  let cDeviceMonth = cddt.getMonth();
+  let thisYear = cDeviceYear;
+  let enterY = prompt(`${icon_cal} Enter a year number, for example: ` + cDeviceYear, thisYear);
 
-    if (enterY !== null) {
-        enterY = enterY.trim();
-    }
+  if (enterY == undefined) {
+    return;
+  }
 
-    if (!isNumber(Number(enterY)) || enterY === null) {
-        alert(
-            "Invalid year number input. It must be an integer number, for example: " +
-                cDeviceYear +
-                "\n\nNow use: " +
-                cDeviceYear
-        );
+  if (enterY !== null) {
+    enterY = enterY.trim();
+  }
+
+  if (!isNumber(Number(enterY)) || enterY === null) {
+    alert("Invalid year number input. It must be an integer number, for example: " + cDeviceYear + "\n\nNow use: " + cDeviceYear);
+  } else {
+    thisYear = Number(enterY);
+  }
+
+  tellClickMarkDate = "";
+
+  let yText = "";
+
+  let i = 0;
+  for (; i < 12; i++) {
+    let m = getUpoDatesOfAMonth(thisYear, i, true);
+    let rowi = handleUpoDateHTML(m);
+
+    let div = `<div`;
+    let decornow = "";
+
+    if (i == cDeviceMonth && i % 2 == 0) {
+      div += ' class="now even">';
+      decornow = " red";
+    } else if (i == cDeviceMonth) {
+      div += ' class="now">';
+      decornow = " red";
+    } else if (i % 2 == 0) {
+      div += ' class="even">';
     } else {
-        thisYear = enterY;
+      div += ">";
     }
 
-    let yText = `<p style="text-align:center;background:#ccc;font-weight:bold;">📜 Myanmar Uposatha Dates<br>in ${thisYear}</p>`;
+    yText += div + `<hr><div class='left${decornow}'>` + u_shortMonth[i] + ", " + thisYear + "</div>" + rowi + "</div>\n";
+  }
 
-    // let allIntv = []
-    let i = 0;
-    for (; i < 12; i++) {
-        let m = getUposathaMonthArray(thisYear, i, true);
+  yText =
+    `<p onclick="clearHTMLScrollTop('createWholeYearTable')" style="text-align:center;padding:2px;background:#ccc;font-weight:bold;">📜 Myanmar Uposatha Dates<br>in ${thisYear}${tellClickMarkDate}</p>` +
+    yText;
 
-        // allIntv = allIntv.concat(smallUpoIntv(m))
+  let x = `<div style="text-align:center;"><span class="closetable" onclick="clearHTMLScrollTop('createWholeYearTable')">Close Date List</span></div>`;
 
-        let rowi = handleUpoDateHTML(m);
+  document.getElementById("createWholeYearTable").innerHTML = "<hr>" + x + yText + "<hr>" + x;
 
-        let div = `<div`;
-        let decornow = "";
+  gotoAName("createWholeYearTable");
 
-        if (i == cDeviceMonth && i % 2 == 0) {
-            div += ' class="now even">';
-        } else if (i == cDeviceMonth) {
-            div += ' class="now">';
-            decornow = " red";
-        } else if (i % 2 == 0) {
-            div += ' class="even">';
-        } else {
-            div += ">";
-        }
+  return yText;
+}
 
-        yText +=
-            div +
-            `<hr><div class='left${decornow}'>` +
-            u_shortMonth[i] +
-            ", " +
-            thisYear +
-            "</div>" +
-            rowi +
-            "</div>\n";
-    }
+function gotoAName(id) {
+  if (!location.pathname) return;
+  let absoURL = location.pathname;
+  location.replace(absoURL + "#" + id);
+}
 
-    // console.log(allIntv)
-
-    document.getElementById("createWholeYearTable").innerHTML = yText;
-    return yText;
+function clearHTMLScrollTop(id) {
+  document.getElementById(id).innerHTML = "";
+  gotoAName("topPage");
 }
 
 function smallUpoIntv(ary) {
-    let st = [];
-    for (let i of ary) {
-        if (i.length < 2) continue;
-        if (!i.includes("th")) {
-            st.push(i);
-        }
+  let st = [];
+  for (let i of ary) {
+    if (i.length < 2) continue;
+    if (!i.includes("th")) {
+      st.push(i);
     }
-    return st;
+  }
+  return st;
 }
 
 function createUpCalMonth() {
-    let cddt = new Date();
-    let dawnTodayArray = getDawnTodayArray(MYLATITUDE, MYLONGITUDE);
-    let uposathaDateArray = getUposathaMonthArray(
-        cddt.getFullYear(),
-        cddt.getMonth(),
-        true
-    );
+  let cddt = new Date();
+  let dawnTodayArray = getDawnTodayArray(LAT_HERE, LONG_HERE);
+  let uposathaDateArray = getUpoDatesOfAMonth(cddt.getFullYear(), cddt.getMonth(), true);
 
-    let dstr = returnTodayString();
-    let html =
-        `<div class="nmo" style="text-align:center;">${icon_upCal} upCal ${verTopShow}<br>${dstr}<br>${deviceGMT}</div><div id="idclock">${icon_star}</div>\n` +
-        `${u_TodayDawnTime}${icon_spin}${HERELOCA}<br>\n` +
-        `${handleDawnHTML(dawnTodayArray)}</br>\n` +
-        `${rightDiv(p_countGMTDate || u_monthUposathaTitle)}<br>\n` +
-        `<span class="sasana">${u_SasanaYear + sasanaYearNow}</span><br>` +
-        `${handleUpoDateHTML(uposathaDateArray)}</div><br><hr width="100%">`;
+  let dstr = returnTodayString();
+  let html =
+    `<div class="upCalTitle" style="text-align:center;">${icon_upCal} upCal ${verHTMLTopShow}<br>${dstr}<br>${deviceGMT}</div><div id="idclock">${icon_star}</div>\n` +
+    `${u_TodayDawnTime}${icon_spin}${LOCATION_HERE}<br>\n` +
+    `${handleDawnHTML(dawnTodayArray)}\n` +
+    /* may remove the above br tag to make it closer */
 
-    return html;
+    `${rightDiv(p_countGMTDate || u_monthUposathaTitle)}<br>\n` +
+    `<span class="sasana">${u_SasanaYear + sasanaYearNow}</span><br>` +
+    `${handleUpoDateHTML(uposathaDateArray)}</div><br><hr width="100%">`;
+
+  return html;
 }
 
 function rightDiv(t) {
-    return '<div class="r">' + t; //+'</div>';
+  return '<div class="r">' + t; /* +'</div>'; */
 }
 
 function handleDawnHTML(ary) {
-    let st = '<span style="text-align: left;">';
+  let st = '<span style="text-align: left;">';
 
-    for (let i of ary) {
-        if (i.length < 2) continue;
-        if (i.includes("Dawn")) {
-            st += '<b style="color:brown;">' + i + "</b><br>";
-        } else if (i.includes("Noon")) {
-            st += '<b style="color:brown;">' + i + "</b><br>";
-        } else {
-            st += '<span class="grey">' + i + "</span><br>";
-        }
+  for (let i of ary) {
+    if (i.length < 2) continue;
+    if (i.includes("Dawn")) {
+      st += '<b style="color:brown;">' + i + "</b><br>";
+    } else if (i.includes("Noon")) {
+      st += '<b style="color:brown;">' + i + "</b><br>";
+    } else {
+      st += '<span class="grey">' + i + "</span><br>";
     }
-    st += "<span>";
-    return st;
+  }
+  st += "<span>";
+  return st;
 }
 
 function handleUpoDateHTML(ary) {
-    //let st = '<div class="r">'
-    //Join with title div
-    let st = "";
+  let st = "";
 
-    for (let i of ary) {
-        if (i.length < 2) continue;
-        if (i.includes("th")) {
-            st += '<b style="color:brown;">' + i + "</b><br>";
-        } else {
-            st += '<span class="grey">' + i + "</span><br>";
-        }
+  for (let i of ary) {
+    if (i.length < 2) continue;
+    /* new/full moon: always has 14th or 15th */
+    if (i.includes("th")) {
+      st += '<b style="color:brown;">' + i + "</b><br>";
+    } else {
+      st += '<span class="sUpo">' + i + "</span><br>";
     }
-    return st;
-}
-
-function createMonthNamesLocale(locale = "") {
-    // Return an array of month names in locale format
-    // getval: (0,1,2,3,4,5)  = (weekday,date,month,year,str,array)
-    locale = locale || Device.locale();
-    if (!locale) locale = "";
-    let ob = new Map();
-    let i = 0;
-    let d = new Date();
-    for (; i < 12; i++) {
-        d.setMonth(i);
-        ob.set(i, localeIt(d, 2, "short", locale));
-    }
-    return Array.from(ob.values());
-}
-
-function localeIt(dateobj, getval, monthformat = "short", locale = "") {
-    // Display date time in locale format
-    // getval: (0,1,2,3,4,5)  = (weekday,date,month,year,str,array)
-    locale = locale || Device.locale();
-    if (!locale) locale = "";
-    let df = new DateFormatter();
-    df.locale = locale;
-    df.dateFormat = "EEEE_@_dd_@_MMM_@_yyyy";
-    if (monthformat == "long") df.dateFormat = "EEEE_@_dd_@_MMMM_@_yyyy";
-    let str = df.string(dateobj);
-    str = str.split("_@_");
-    if (getval == 4) return str.join(" ");
-    if (getval == 5) return str;
-    return str[getval];
+  }
+  return st;
 }
 
 function returnTodayString() {
-    let d = new Date();
-    let options = {
-        weekday: "long",
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-    };
-    // undefined will use env default (device) locale format
-    return d.toLocaleDateString(undefined, options);
-}
-
-function returnToday_OldVersion(withDayth = false) {
-    let dt = new Date();
-    let y = dt.getFullYear();
-    let m = u_shortMonth[dt.getMonth()];
-    let d = dt.getDate();
-    let dstr = f2d(d) + " " + m + " " + y;
-    if (withDayth) {
-        dstr = u_dayth[dt.getDay()] + ", " + dstr;
-    }
-    return dstr;
+  let d = new Date();
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  };
+  /* undefined will use env default (device) locale format */
+  return d.toLocaleDateString(undefined, options);
 }
 
 function newFSize(fsize, adjustFontValue) {
-    if (!isNaN(adjustFontValue))
-        return Math.floor(fsize * Math.abs(adjustFontValue));
-    return Number(fsize);
+  if (!isNaN(adjustFontValue)) return Math.floor(fsize * Math.abs(adjustFontValue));
+  return Number(fsize);
 }
 
 function f3dits(n) {
-    // https://riptutorial.com/javascript/topic/3276/data-manipulation
-    n = n.toFixed(4).replace(/\d(?=\d{3}\.)/g, "$&,");
-    return n.slice(0, -2);
+  /* https://riptutorial.com/javascript/topic/3276/data-manipulation */
+  n = n.toFixed(4).replace(/\d(?=\d{3}\.)/g, "$&,");
+  return n.slice(0, -2);
 }
 
 function f2d(str) {
-    str = "00" + str;
-    return str.substring(str.length - 2);
+  str = "00" + str;
+  return str.substring(str.length - 2);
 }
 
-function createHeaderRow(title, values) {
-    let row = new UITableRow();
-    row.addText(title).leftAligned();
-    for (let v of values) {
-        row.addText(v.toString()).centerAligned();
-    }
-    return row;
-}
+function getDawnTodayArray(userlat, userlong, userheight = 0, u_DawnMinus = MINUTEX, useDynamicDawn_Formula2 = DYNAMIC_FML, displayNauticalCivilDawn = NAUCIVIL_SHOW) {
+  if (userlat == errorLocation || userlong == errorLocation) {
+    return [`Cannot calculate dawnrise`, `please provide:`, `+ GPS latitude number`, `+ GPS longitude number`];
+  }
 
-function createRow(monthstr, values) {
-    let row = new UITableRow();
-    row.addText(monthstr).leftAligned();
+  const SunCalc = returnSunCalc();
 
-    // To display the table evenly, make all array.length equally
-    // Each month may have maximum 6 sabbath days or uposatha days
+  let todayZeroHour = new Date();
 
-    let vlen = 6 - values.length;
-    while (vlen > 0) {
-        values.push(" ");
-        vlen = vlen - 1;
-    }
+  todayZeroHour.setHours(12);
+  todayZeroHour.setMinutes(12);
+  todayZeroHour.setSeconds(12);
 
-    for (let v of values) {
-        if (v.includes("th")) {
-            let vs = v.split("  ");
-            row.addText(vs[1].toString(), vs[0].toString()).centerAligned();
-        } else {
-            row.addText(v.toString(), " ").centerAligned();
-        }
-    }
-    return row;
-}
+  const times = SunCalc.getTimes(todayZeroHour, userlat, userlong, userheight);
 
-function getDawnTodayArray(
-    userlat,
-    userlong,
-    userheight = 0,
-    u_DawnMinus = MMINUS,
-    useDynamicDawn_Formula2 = useDFORMULA,
-    displayNauticalCivilDawn = DISPLAYNAU
-) {
-    if (userlat == errorLocation || userlong == errorLocation) {
-        return [
-            `Cannot calculate dawnrise`,
-            `please provide:`,
-            `+ GPS latitude number`,
-            `+ GPS longitude number`,
-        ];
-    }
-    const SunCalc = returnSunCalc();
+  /* const appdawn = f2d(times.dawn.getHours()) + ":" + f2d(times.dawn.getMinutes()) */
 
-    let todayZeroHour = new Date();
+  let sunrise = f2d(times.sunrise.getHours()) + ":" + f2d(times.sunrise.getMinutes());
 
-    todayZeroHour.setHours(12);
-    todayZeroHour.setMinutes(12);
-    todayZeroHour.setSeconds(12);
+  /* for example 40 minutes in mcsec = 2400000 */
+  const userDawn = new Date(times.sunrise.getTime() - Number(u_DawnMinus) * 60 * 1000);
 
-    const times = SunCalc.getTimes(
-        todayZeroHour,
-        userlat,
-        userlong,
-        userheight
-    );
+  let nauticalDawn = times.nauticalDawn.getTime();
+  let civilDawn = times.dawn.getTime();
+  /* Formula 2 dawn time = sunrise - (civil dawn - nautical dawn) */
+  const formula2_DawnMinus = civilDawn - nauticalDawn;
+  const userDawn2 = new Date(times.sunrise.getTime() - Number(formula2_DawnMinus));
 
-    // const appdawn = f2d(times.dawn.getHours()) + ":" + f2d(times.dawn.getMinutes())
+  nauticalDawn = new Date(nauticalDawn);
+  civilDawn = new Date(civilDawn);
 
-    let sunrise =
-        f2d(times.sunrise.getHours()) + ":" + f2d(times.sunrise.getMinutes());
+  let userDawnValue = f2d(userDawn.getHours()) + ":" + f2d(userDawn.getMinutes());
 
-    // for example 40 minutes in mcsec = 2400000
-    const userDawn = new Date(
-        times.sunrise.getTime() - Number(u_DawnMinus) * 60 * 1000
-    );
+  const nauticalValue = f2d(nauticalDawn.getHours()) + ":" + f2d(nauticalDawn.getMinutes());
 
-    let nauticalDawn = times.nauticalDawn.getTime();
-    let civilDawn = times.dawn.getTime();
-    // Formula 2 dawn time = sunrise - (civil dawn - nautical dawn)
-    const formula2_DawnMinus = civilDawn - nauticalDawn;
-    const userDawn2 = new Date(
-        times.sunrise.getTime() - Number(formula2_DawnMinus)
-    );
+  const civilValue = f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
 
-    nauticalDawn = new Date(nauticalDawn);
-    civilDawn = new Date(civilDawn);
+  let userDawnValue2 = f2d(userDawn2.getHours()) + ":" + f2d(userDawn2.getMinutes());
 
-    let userDawnValue =
-        f2d(userDawn.getHours()) + ":" + f2d(userDawn.getMinutes());
+  const solarNoon = f2d(times.solarNoon.getHours()) + ":" + f2d(times.solarNoon.getMinutes());
 
-    const nauticalValue =
-        f2d(nauticalDawn.getHours()) + ":" + f2d(nauticalDawn.getMinutes());
+  const sunset = f2d(times.sunset.getHours()) + ":" + f2d(times.sunset.getMinutes());
 
-    const civilValue =
-        f2d(civilDawn.getHours()) + ":" + f2d(civilDawn.getMinutes());
-
-    let userDawnValue2 =
-        f2d(userDawn2.getHours()) + ":" + f2d(userDawn2.getMinutes());
-
-    const solarNoon =
-        f2d(times.solarNoon.getHours()) +
-        ":" +
-        f2d(times.solarNoon.getMinutes());
-
-    const sunset =
-        f2d(times.sunset.getHours()) + ":" + f2d(times.sunset.getMinutes());
-
-    if (useDynamicDawn_Formula2) {
-        userDawnValue = userDawnValue2;
-    }
-    if (displayNauticalCivilDawn) {
-        return [
-            `${userDawnValue} Dawnrise`,
-            /*`${userDawnValue2} Dawn`,*/
-            `${nauticalValue} Nautical`,
-              `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
-            `${sunrise} Sunrise`,
-            `${solarNoon} Noon`,
-            `${sunset} Set`,
-        ];
-    }
-
+  if (useDynamicDawn_Formula2) {
+    userDawnValue = userDawnValue2;
+  }
+  if (displayNauticalCivilDawn) {
     return [
-        `${userDawnValue} Dawnrise` /*`${userDawnValue2} Dawn`,*/,
-        `${sunrise} Sunrise`,
-        `${solarNoon} Noon`,
-        `${sunset} Set`,
+      `${userDawnValue} Dawnrise`,
+      /*`${userDawnValue2} Dawn`,*/
+      `${nauticalValue} Nautical`,
+      `<span style='color:blue;font-weight:bold;'>${civilValue} Civil</span>`,
+      `${sunrise} Sunrise`,
+      `${solarNoon} Noon`,
+      `${sunset} Set`,
     ];
+  }
+
+  return [`${userDawnValue} Dawnrise` /*`${userDawnValue2} Dawn`,*/, `${sunrise} Sunrise`, `${solarNoon} Noon`, `${sunset} Set`];
 }
 
+function markFullMoonDates(mm, mp = 1) {
+  /**
+   * input: (mm=Myanmar month, mp=moon phase)
+   * output: theday string with icon or ''
+   * After 2022 the accuracy of MM dates is in question.
+   * Note: minLT <= Western year <= maxUT
+   **/
+
+  if (mp != 1) {
+    /* only for full moon day */
+    return "";
+  }
+
+  let theday = "";
+  switch (mm) {
+    /*
+    case 2:
+      theday = `<span style='color:grey;' onclick="alert('Vessak day.')">${icon_wheel} </span>`;
+      break;
+    case 3:
+      theday = `<span style='color:grey;' onclick="alert('Mahāsamaya day.')">${icon_wheel} </span>`;
+      break;
+    */
+    case 4:
+      theday = `<span style='color:#E58900;font-size:x-small;' onclick="alert('TOMORROW, enter the 1st vassa.\\n\\nPlease double check! ${icon_calm}')">${icon_vs}${icon_next} </span>`;
+      break;
+    /*
+    case 5:
+      theday = `<span style='color:grey' onclick="alert('Mettā day.')">${icon_wheel} </span>`;
+      break;
+    case 6:
+      theday = `<span style='color:grey' onclick="alert('Garudhamma day.')">${icon_wheel} </span>`;
+      break;
+    */
+    case 7:
+      theday = `<span style='font-size:x-small;color:#E58900;' onclick="alert('TOMORROW, the 1st vassa will end.\\n\\nPlease double check! ${icon_calm}')">${icon_vs}${icon_next} </span>`;
+      break;
+    default:
+      theday = "";
+      break;
+  }
+
+  if (theday.length > 0) {
+    tellClickMarkDate = `<br><span style='font-size:x-small;'>(Click on ${icon_vs}${icon_next} to view a day info)</span>`;
+  }
+
+  return theday;
+}
+
+function getUpoDatesOfAMonth(setthisyear, setthismonth, isWidget = false) {
+  /********************************************** */
+  /* input: setthisyear= a year number like 2015, setthismonth=[0-11] zero based month, isWidget = false/true (widget html) */
+  /* output: array: uposatha date of the input month */
+
+  /* Reference: the index.html of mmcal */
+  /********************************************** */
+  let ynumber, mnumber;
+
+  let dt = new Date();
+  /* fix returning a month ahead of the expected value when the app is running on 31 date of month by set date = 1 */
+  /* This bug only occured when using the workaround (i + 1 - r) (unnoted the M.d) to show date when the app is running on 31 date of month. */
+  /* thanks ven. Dhmdr S'porean for bug reporting */
+
+  dt.setDate(1);
+  /* since upCal V2.5 (single html file), we use the library provided M.d, dt.setDate(1) is now optional */
+
+  if (isNumber(setthisyear)) {
+    ynumber = Number(setthisyear);
+    dt.setFullYear(ynumber);
+  }
+
+  if (isNumber(setthismonth)) {
+    mnumber = Number(setthismonth);
+    dt.setMonth(mnumber);
+  }
+
+  /* Init */
+  var uis = {
+    Lang: 0, //undefined,//Language 0 = English
+    Type: 0, //Gregorian or Julian
+    y: dt.getFullYear(),
+    m: 1 + dt.getMonth(),
+    d: dt.getDate(), //y,m,d to display
+    cy: dt.getFullYear(),
+    cm: 1 + dt.getMonth(),
+    cd: dt.getDate(), //current y,m,d
+    BY: 640,
+    EY: 2140, //beginning and end of the calendar,
+    LT: 1700,
+    UT: 2022, //lower and upper threshold for accurate years
+  };
+
+  var r,
+    i,
+    js,
+    je,
+    eml,
+    tstr,
+    str = "";
+  //------------------------------------------------------------------------
+  var Cday = new ceMmDateTime(); // start of month
+  Cday.SetTimezone(0);
+  Cday.SetDateTime(uis.cy, uis.cm, uis.cd, 12, 0, 0, 0); // time zone is irrelevant
+  //------------------------------------------------------------------------
+  var MS = new ceMmDateTime(); // start of month
+  MS.SetTimezone(0);
+
+  /* pnry: we can change year and month here: uis.y, uis.m to calculate other month */
+
+  MS.SetDateTime(uis.y, uis.m, 1, 12, 0, 0, 0, uis.Type); // time zone is irrelevant
+
+  sasanaYearNow = MS.ToMString("&YYYY") + " - MM year " + MS.ToMString("&yyyy"); /* +  ' (' + MS.my_name + ')';*/
+
+  js = MS.jdn; //Find julian day number of start of
+  // the month according to calendar type
+
+  /* we will use it to set SetJD(js) inside the loop below */
+
+  eml = MS.mlen; //get the length of the month
+  je = js + eml - 1; //Julian day number of end of the month
+
+  /* ---------------------------------------------------------------------- */
+  r = (MS.w + 6) % 7;
+  eml = Math.ceil((eml + r) / 7) * 7;
+  var M = new ceMmDateTime(); // end of month
+  M.SetTimezone(0);
+  M.SetCT(uis.Type);
+
+  let markDate = "";
+  /* loop each date for the month of setthismonth */
+  for (i = 0; i < eml; i++) {
+    markDate = "";
+
+    /*start of checking valid day to display */
+    if (i >= r && js <= je) {
+      M.SetJD(js);
+      /* M.mp = moon phase [0=waxing, 1=full moon, 2=waning, 3=new moon] */
+      /* M.ToMString("&ff"): 14/15 */
+
+      if (isWidget) {
+        switch (M.mp) {
+          case 0:
+            if (M.sabbath === "Sabbath") str += u_WaxingQuarter + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 1:
+            /* 
+            markDate only marks some full moon dates
+            */
+
+            if (minLT <= ynumber && ynumber <= maxUT) {
+              markDate = markFullMoonDates(M.mm);
+            }
+
+            str += markDate + M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 2:
+            if (M.sabbath === "Sabbath") str += u_WaningQuarter + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+          case 3:
+            str += M.ToMString("&ff") + `th` + u_NMPatimokkha + "  " + f2d(M.d) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + "@@";
+            break;
+        }
+      } else {
+        switch (M.mp) {
+          /* shorter in iOS table (only showing date) */
+          case 0:
+            if (M.sabbath === "Sabbath") str += f2d(M.d) + "@@";
+            break;
+          case 1:
+            if (minLT <= ynumber && ynumber <= maxUT) {
+              markDate = markFullMoonDates(M.mm);
+            }
+            str += markDate + M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(M.d) + "@@";
+            break;
+          case 2:
+            if (M.sabbath === "Sabbath") str += f2d(M.d) + "@@";
+            break;
+          case 3:
+            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(M.d) + "@@";
+            break;
+        }
+      }
+      // displaying Myanmar date
+      // if (M.my>=2) { str += mMDStr(M); }
+      js++; //Julian day number for next day
+    } else {
+      /* Do Nothing */
+    }
+  }
+
+  return str.split("@@");
+}
 
 
 /*--------------------------------------------------------------------
  * App Library
  * ------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------
- * MMCAL Library
- * ------------------------------------------------------------------*/
-
-function getUposathaMonthArray(setthisyear, setthismonth, isWidget = false) {
+function returnClass_ceMmDateTime() {
+    
+  /*----------------
+   * MMCAL Library
+   * --------------*/
+ 
   /*--------------------------------------------------------------------
    * ceMmDateTime.js, index.htm
    * Modified and deleted un-used classes for UPCAL Scriptable iOS widget
@@ -3009,10 +2864,10 @@ SOFTWARE.
 
     // Myanmar year name
     get my_name() {
-      // var yna=["ပုဿနှစ်","မာခနှစ်","ဖ္လကိုန်နှစ်","စယ်နှစ်",
-      // 	"ပိသျက်နှစ်","စိဿနှစ်","အာသတ်နှစ်","သရဝန်နှစ်",
-      // 	"ဘဒြနှစ်","အာသိန်နှစ်","ကြတိုက်နှစ်","မြိက္ကသိုဝ်နှစ်"];
-      var yna = ["Hpusha", "Magha", "Phalguni", "Chitra", "Visakha", "Jyeshtha", "Ashadha", "Sravana", "Bhadrapaha", "Asvini", "Krittika", "Mrigasiras"];
+      var yna=["ပုဿ","မာခ","ဖ္လကိုန်","စယ်",
+       	"ပိသျက်","စိဿ","အာသတ်","သရဝန်",
+       	"ဘဒြ","အာသိန်","ကြတိုက်","မြိက္ကသိုဝ်"];
+      // var yna = ["Hpusha", "Magha", "Phalguni", "Chitra", "Visakha", "Jyeshtha", "Ashadha", "Sravana", "Bhadrapaha", "Asvini", "Krittika", "Mrigasiras"];
       return yna[this.my % 12];
     }
 
@@ -3128,6 +2983,7 @@ SOFTWARE.
     }
   }
 
+  /*
   function mMDStr(M) {
     var str = "",
       tstr = "";
@@ -3146,125 +3002,13 @@ SOFTWARE.
     str += "</p>";
     return str;
   }
-
-  //*********************************************
-  //* modified index.htm of mmcal by @Cuong Dang
-  //*********************************************
-
-  var dt = new Date();
-  // fix returning a month ahead of the expected value when the app is running on 31 date of month set date = 1
-  // thanks ven. Dhmdr S'porean for bug reporting
-    
-  dt.setDate(1);
+  */
   
-  if (isNumber(setthisyear)) {
-    dt.setFullYear(Number(setthisyear));
-  }
-
-  if (isNumber(setthismonth)) {
-    dt.setMonth(Number(setthismonth));
-  }
-
-  //User Interface setting
-  var uis = {
-    Lang: 0, //undefined,//Language 0 = English
-    Type: 0, //Gregorian or Julian
-    y: dt.getFullYear(),
-    m: 1 + dt.getMonth(),
-    d: dt.getDate(), //y,m,d to display
-    cy: dt.getFullYear(),
-    cm: 1 + dt.getMonth(),
-    cd: dt.getDate(), //current y,m,d
-    BY: 640,
-    EY: 2140, //beginning and end of the calendar,
-    LT: 1700,
-    UT: 2022, //lower and upper threshold for accurate years
-  };
-  var r,
-    i,
-    js,
-    je,
-    eml,
-    tstr,
-    str = "";
-  //------------------------------------------------------------------------
-  var Cday = new ceMmDateTime(); // start of month
-  Cday.SetTimezone(0);
-  Cday.SetDateTime(uis.cy, uis.cm, uis.cd, 12, 0, 0, 0); // time zone is irrelevant
-  //------------------------------------------------------------------------
-  var MS = new ceMmDateTime(); // start of month
-  MS.SetTimezone(0);
-
-  // pnry, we can change year and month here: uis.y, uis.m to calculate other month
-
-  MS.SetDateTime(uis.y, uis.m, 1, 12, 0, 0, 0, uis.Type); // time zone is irrelevant
-
-  sasanaYearNow = MS.ToMString("&YYYY");
-
-  js = MS.jdn; //Find julian day number of start of
-  //the month according to calendar type
-  eml = MS.mlen; //get the length of the month
-  je = js + eml - 1; //Julian day number of end of the month
-  var ME = new ceMmDateTime(); // end of month
-  ME.SetTimezone(0);
-  ME.SetJD(je);
-  //-----------------------------------------------------------------------
-  r = (MS.w + 6) % 7;
-  eml = Math.ceil((eml + r) / 7) * 7;
-  var M = new ceMmDateTime(); // end of month
-  M.SetTimezone(0);
-  M.SetCT(uis.Type);
-  for (i = 0; i < eml; i++) {
-    //start of checking valid day to display
-    if (i >= r && js <= je) {
-      M.SetJD(js);
-      // M.mp = moon phase [0=waxing, 1=full moon, 2=waning, 3=new moon]
-      // M.ToMString: myanmar nth day number
-
-      if (isWidget) {
-        switch (M.mp) {
-          case 0:
-            if (M.sabbath === "Sabbath") str += u_WaxingQuarter + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 1:
-            str += M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 2:
-            if (M.sabbath === "Sabbath") str += u_WaningQuarter + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-          case 3:
-            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(i + 1 - r) + u_DateDiv + f2d(uis.cm) + u_DateDiv + uis.cy + ";";
-            break;
-        }
-      } else {
-        switch (M.mp) {
-          // shorter in table (only date)
-          case 0:
-            if (M.sabbath === "Sabbath") str += f2d(i + 1 - r) + ";";
-            break;
-          case 1:
-            str += M.ToMString("&ff") + "th" + u_FMPatimokkha + "  " + f2d(i + 1 - r) + ";";
-            break;
-          case 2:
-            if (M.sabbath === "Sabbath") str += f2d(i + 1 - r) + ";";
-            break;
-          case 3:
-            str += M.ToMString("&ff") + "th" + u_NMPatimokkha + "  " + f2d(i + 1 - r) + ";";
-            break;
-        }
-      }
-      // displaying Myanmar date
-      // if (M.my>=2) { str += mMDStr(M); }
-      js++; //Julian day number for next day
-    } else {
-      // Do Nothing
-    }
-  }
-
-  return str.split(";");
+  return ceMmDateTime;
 }
 
-/*--------------------------------------------------------------------
+function returnSunCalc() {
+  /*--------------------------------------------------------------------
  * SunCalc Library
  * ------------------------------------------------------------------*/
 
@@ -3298,7 +3042,7 @@ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF TH
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-function returnSunCalc() {
+
   "use strict";
 
   // shortcuts for easier to read formulas
@@ -3620,20 +3364,19 @@ function returnSunCalc() {
     return result;
   };
 
-  var window = window ? window : {};
+  // var window = window ? window : {};
 
   // export as Node module / AMD module / browser variable
+  /** pnry disabled this
   if (typeof exports === "object" && typeof module !== "undefined") module.exports = SunCalc;
   else if (typeof define === "function" && define.amd) define(SunCalc);
   else window.SunCalc = SunCalc;
-
-  // pnry added return SunCalc
+  */
+  /* pnry added return SunCalc */
   return SunCalc;
 }
 
-// Do not edit anything beyond this line, it is used for compare new version update
-//thisAppVersion=2
-
 </script>
+
     </body>
 </html>
