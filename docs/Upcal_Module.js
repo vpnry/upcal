@@ -49,7 +49,7 @@ const u_TodayDawnTime = "Today at";
 const u_SasanaYear = "Sasana year ";
 
 const u_dayth = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const u_iMonths = ["1-Jan", "2-Feb", "3-Mar", "4-Apr", "5-May", "6-Jun", "7-Jul", "8-Aug", "9-Sep", "10-Oct", "11-Nov", "12-Dec"];
+const u_iMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const u_shortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 //const u_shortMonth = createMonthNamesLocale();
 const u_monthUposathaTitle = `Myanmar - Uposatha Dates`;
@@ -195,7 +195,7 @@ const upCAL = {
         // Highlight the current month
         monthRow.backgroundColor = (i === cDeviceMonth) ? new Color("#007AFF") : new Color("#555555");
         
-        let monthCell = monthRow.addText(u_iMonths[i]);
+        let monthCell = monthRow.addText(`${u_iMonths[i]}, ${thisYear}`);
         monthCell.titleColor = Color.white();
         monthCell.leftAligned();
         table.addRow(monthRow);
