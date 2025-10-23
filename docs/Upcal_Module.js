@@ -20,8 +20,8 @@
  * https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e
  *----------------------------------------------------------- ---------*/
 
-const thisAppVersion = 4;
-const thisAppVersionDate = "(2023-10-31)";
+const thisAppVersion = 5;
+const thisAppVersionDate = "(2025-10-24)";
 const jsonParsePoint = "u@pc@l";
 const errorLocation = 9999.99999;
 const upcalRepos = "https://vpnry.github.io/upcal";
@@ -249,6 +249,10 @@ const upCAL = {
     let creditRow2 = new UITableRow();
     creditRow2.addText(`App: Upcal v${thisAppVersion} by Cuong DANG`).leftAligned();
     table.addRow(creditRow2);
+
+    let creditRow3 = new UITableRow();
+    creditRow3.addText(`https://github.com/vpnry/upcal`).leftAligned();
+    table.addRow(creditRow3);
 
     if (config.runsWithSiri) {
       Speech.speak(`Uposatha Dates in ${thisYear}`);
