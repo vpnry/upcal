@@ -11,13 +11,14 @@
  * Last modified: 31 Oct 2023 wrapped class ceMmDateTime
  * Last modified: 31 July 2023 (fix 31 date, + 1 month a head)
  * Last modified: 20 Jan 2021
+ * Last modified: 24 Oct 2025
  * --------------------------------------------------------------------
  * Open source library (MIT) used:
  * MIT License (https://opensource.org/licenses/MIT)
  * SunCalc (Vladimir Agafonkin), MMCal (Yan Naing Aye)
  * Widget and table snippet is based on Coronavirus Scriptable Widget (03 Oct 2020):
  * https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e
- *--------------------------------------------------------------------*/
+ *----------------------------------------------------------- ---------*/
 
 const thisAppVersion = 4;
 const thisAppVersionDate = "(2023-10-31)";
@@ -138,7 +139,7 @@ const upCAL = {
       fSize18,
       u_WidgetBackgroundColor,
 
-      `🌅 UPCAL  ${dstr}`,
+      `🌅 upCal v${thisAppVersion} ${dstr}`,
       this.settings.locationNAME,
       u_TodayDawnTime,
       dawnTodayArray,
@@ -147,16 +148,16 @@ const upCAL = {
     );
     return widget;
   },
-
-  async createWholeYearTable() {
+  
+  async createWholeYearTable22() {
     let cddt = new Date();
     let cDeviceYear = cddt.getFullYear();
     let cDeviceMonth = cddt.getMonth();
 
     let alex = new Alert();
-    alex.title = "VIEW ANY YEAR \nMM UPOSATHA DATES";
-    alex.message = "Enter A YEAR Number To List All MM Uposatha Dates.\nFor example next year: " + (cDeviceYear + 1);
-    alex.addTextField("yyyy", `${cDeviceYear}`);
+    alex.title = "View Uposatha Dates";
+    alex.message = "Enter a year to display the calendar.";
+    alex.addTextField("e.g., " + cDeviceYear, `${cDeviceYear}`);
     alex.addCancelAction("Cancel");
     alex.addAction("View");
 
@@ -166,52 +167,193 @@ const upCAL = {
       return;
     }
     let thisYear = Number(alex.textFieldValue(0));
-    if (!isNumber(thisYear)) {
-      log("Invalid year input, switch to use the device current year");
-      thisYear = currentDeviceYear;
+    if (!isNumber(thisYear) || thisYear < minLT || thisYear > maxUT) {
+      log(`Invalid year input. Using current year: ${cDeviceYear}`);
+      thisYear = cDeviceYear;
     }
 
     let table = new UITable();
     table.showSeparators = true;
 
-    let row = new UITableRow();
-    row.isHeader = true;
-    row.addText(`Myanmar Uposatha Dates in ${thisYear}`, `These calculated dates are for references only.`).centerAligned();
-    table.addRow(row);
+    // Main Title Header
+    let titleRow = new UITableRow();
+    titleRow.isHeader = true;
+    titleRow.addText(`Myanmar Uposatha Dates in ${thisYear}`, "Calculated dates are for reference only.").centerAligned();
+    table.addRow(titleRow);
 
-    // fill data
-    // the ending , of Date, is a trict to display the row equally with others
-    table.addRow(createHeaderRow("Month", "Date,Date,Date,Date,Date,".split(",")));
+    // Loop through each month to build the table
+    for (let i = 0; i < 12; i++) {
+        // Force 'isWidget = true' to get consistent, icon-rich date strings for parsing
+        let uposathaDates = getUpoDatesOfAMonth(thisYear, i, true)
+                                .filter(d => d.trim() !== "");
 
-    let i = 0;
-    for (; i < 12; i++) {
-      let rowi = createRow(u_iMonths[i], getUpoDatesOfAMonth(thisYear, i));
+        if (uposathaDates.length === 0) continue;
 
-      if (i == cDeviceMonth) {
-        rowi.backgroundColor = Color.green();
-        if (i % 2 == 0) rowi.backgroundColor = Color.blue();
-      }
+        // Add a styled header for the current month
+        let monthRow = new UITableRow();
+        monthRow.isHeader = true;
+        // Highlight the current month
+        monthRow.backgroundColor = (i === cDeviceMonth) ? new Color("#007AFF") : new Color("#555555");
+        
+        let monthCell = monthRow.addText(u_iMonths[i]);
+        monthCell.titleColor = Color.white();
+        monthCell.leftAligned();
+        table.addRow(monthRow);
 
-      table.addRow(rowi);
+        // Add a beautifully formatted row for each Uposatha date in the month
+        for (const dateString of uposathaDates) {
+            table.addRow(createDateRow(dateString));
+        }
     }
 
-    // add legend
-    let legendrow = new UITableRow();
-    legendrow.addText("", `\n🌕 full moon | 🔵 new moon | 14/15th: 14/15th day | other: quarter uposatha.\n${icon_vs}${icon_next}: next day vassa event (please double check!).`).rightAligned();
-    table.addRow(legendrow);
+    // Add legend and credits at the end for completeness
+    // let legendRow = new UITableRow();
+    // legendRow.addText("Legend", `🌕 Full Moon\n🔵 New Moon\n🌓 Waxing Quarter\n🌗 Waning Quarter\n${icon_vs}${icon_next} Vassa Event`).leftAligned();
+    // table.addRow(legendRow);
 
-    // add credit
-    let creditRow = new UITableRow();
-    creditRow.addText("", `\n📜 Open source lib: SunCalc (Vladimir Agafonkin), MMCal (Yan Naing Aye) \nThis Upcal version: ${thisAppVersion + " " + thisAppVersionDate}. More info & update: ${upcalRepos}`).rightAligned();
-    table.addRow(creditRow);
+    // let creditRow = new UITableRow();
+    // creditRow.addText("Credits", `SunCalc (V. Agafonkin), MMCal (Y. N. Aye)\nUpcal v${thisAppVersion} by Cuong DANG`).leftAligned();
+    // table.addRow(creditRow);
+
+    // Add a distinct header for the legend
+    let legendHeaderRow = new UITableRow();
+    legendHeaderRow.isHeader = true;
+    legendHeaderRow.backgroundColor = new Color("#555555");
+    let legendHeaderCell = legendHeaderRow.addText("Legend");
+    legendHeaderCell.titleColor = Color.white();
+    legendHeaderCell.leftAligned();
+    table.addRow(legendHeaderRow);
+
+    // Add each legend item as its own clean, formatted row
+    table.addRow(createLegendRow("🌕", "Full Moon"));
+    table.addRow(createLegendRow("🔵", "New Moon"));
+    table.addRow(createLegendRow("🌓", "Waxing Quarter"));
+    table.addRow(createLegendRow("🌗", "Waning Quarter"));
+    table.addRow(createLegendRow(`${icon_vs}${icon_next}`, "Vassa Event (Next Day)"));
+
+    // --- CREDITS SECTION ---
+    // Add a distinct header for the credits
+    let creditHeaderRow = new UITableRow();
+    creditHeaderRow.isHeader = true;
+    creditHeaderRow.backgroundColor = new Color("#555555");
+    let creditHeaderCell = creditHeaderRow.addText("Credits");
+    creditHeaderCell.titleColor = Color.white();
+    creditHeaderCell.leftAligned();
+    table.addRow(creditHeaderRow);
+
+    // Add credits in simple, easy-to-read rows
+    let creditRow1 = new UITableRow();
+    creditRow1.addText("Libs: SunCalc (V. Agafonkin), MMCal (Y. N. Aye)").leftAligned();
+    table.addRow(creditRow1);
+    
+    let creditRow2 = new UITableRow();
+    creditRow2.addText(`App: Upcal v${thisAppVersion} by Cuong DANG`).leftAligned();
+    table.addRow(creditRow2);
 
     if (config.runsWithSiri) {
-      Speech.speak(`Uposatha Date in ${thisYear}`);
+      Speech.speak(`Uposatha Dates in ${thisYear}`);
     }
 
     if (table) table.present();
     return table;
   },
+
+  async createWholeYearTable() {
+    let cddt = new Date();
+    let cDeviceYear = cddt.getFullYear();
+    let cDeviceMonth = cddt.getMonth();
+
+    let alex = new Alert();
+    alex.title = "View Uposatha Dates";
+    alex.message = "Enter a year to display the calendar.";
+    alex.addTextField("e.g., " + cDeviceYear, `${cDeviceYear}`);
+    alex.addCancelAction("Cancel");
+    alex.addAction("View");
+
+    let idx = await alex.presentAlert();
+    if (idx == -1) {
+      log("Cancelled");
+      return;
+    }
+    let thisYear = Number(alex.textFieldValue(0));
+    if (!isNumber(thisYear) || thisYear < minLT || thisYear > maxUT) {
+      log(`Invalid year input. Using current year: ${cDeviceYear}`);
+      thisYear = cDeviceYear;
+    }
+
+    let table = new UITable();
+    table.showSeparators = true;
+
+    // Main Title Header
+    let titleRow = new UITableRow();
+    titleRow.isHeader = true;
+    titleRow.addText(`Myanmar Uposatha Dates in ${thisYear}`, "Calculated dates are for reference only.").centerAligned();
+    table.addRow(titleRow);
+
+    // Loop through each month to build the table
+    for (let i = 0; i < 12; i++) {
+        // Force 'isWidget = true' to get consistent, icon-rich date strings for parsing
+        let uposathaDates = getUpoDatesOfAMonth(thisYear, i, true)
+                                .filter(d => d.trim() !== "");
+
+        if (uposathaDates.length === 0) continue;
+
+        // Add a styled header for the current month
+        let monthRow = new UITableRow();
+        monthRow.isHeader = true;
+        // Highlight the current month
+        monthRow.backgroundColor = (i === cDeviceMonth) ? new Color("#007AFF") : new Color("#555555");
+        
+        let monthCell = monthRow.addText(u_iMonths[i]);
+        monthCell.titleColor = Color.white();
+        monthCell.leftAligned();
+        table.addRow(monthRow);
+
+        // Add a beautifully formatted row for each Uposatha date in the month
+        for (const dateString of uposathaDates) {
+            table.addRow(createDateRow(dateString));
+        }
+    }
+
+    // --- LEGEND SECTION ---
+    let legendHeaderRow = new UITableRow();
+    legendHeaderRow.isHeader = true;
+    legendHeaderRow.backgroundColor = new Color("#555555");
+    let legendHeaderCell = legendHeaderRow.addText("Legend");
+    legendHeaderCell.titleColor = Color.white();
+    legendHeaderCell.leftAligned();
+    table.addRow(legendHeaderRow);
+
+    table.addRow(createLegendRow("🌕", "Full Moon"));
+    table.addRow(createLegendRow("🔵", "New Moon"));
+    table.addRow(createLegendRow("🌓", "Waxing Quarter"));
+    table.addRow(createLegendRow("🌗", "Waning Quarter"));
+    table.addRow(createLegendRow(`${icon_vs}${icon_next}`, "Vassa Event (Next Day)"));
+
+    // --- CREDITS SECTION ---
+    let creditHeaderRow = new UITableRow();
+    creditHeaderRow.isHeader = true;
+    creditHeaderRow.backgroundColor = new Color("#555555");
+    let creditHeaderCell = creditHeaderRow.addText("Credits");
+    creditHeaderCell.titleColor = Color.white();
+    creditHeaderCell.leftAligned();
+    table.addRow(creditHeaderRow);
+
+    let creditRow1 = new UITableRow();
+    creditRow1.addText("Libs: SunCalc (V. Agafonkin), MMCal (Y. N. Aye)").leftAligned();
+    table.addRow(creditRow1);
+    
+    let creditRow2 = new UITableRow();
+    creditRow2.addText(`App: Upcal v${thisAppVersion} by Cuong DANG`).leftAligned();
+    table.addRow(creditRow2);
+
+    if (config.runsWithSiri) {
+      Speech.speak(`Uposatha Dates in ${thisYear}`);
+    }
+
+    if (table) table.present();
+    return table;
+},
 
   async updateLocationGPS() {
     let title = "📡 Use GPS Update Location";
@@ -490,6 +632,80 @@ module.exports = upCAL;
 // DO NOT RENAME, OR BE MORE CAREFUL WHEN MODIFY THEM
 //--------------------------------------------------------------------
 
+// Helper function to create a formatted row for the legend
+
+// Helper function to create a formatted row for the legend
+function createLegendRow(icon, description) {
+    const row = new UITableRow();
+    row.cellSpacing = 10;
+    row.height = 40;
+    row.backgroundColor = Color.dynamic(new Color("#ffffff"), new Color("#2c2c2e"));
+
+    const iconCell = row.addText(icon);
+    iconCell.widthWeight = 15;
+    iconCell.titleFont = Font.systemFont(18);
+    iconCell.centerAligned();
+
+    const descriptionCell = row.addText(description);
+    descriptionCell.widthWeight = 85;
+    descriptionCell.titleFont = Font.systemFont(16);
+    descriptionCell.leftAligned();
+
+    return row;
+}
+
+// Helper function for creating a formatted date row
+
+function createDateRow(dateString) {
+    const row = new UITableRow();
+    row.height = 45;
+    row.cellSpacing = 15;
+    row.backgroundColor = Color.dynamic(new Color("#ffffff"), new Color("#2c2c2e"));
+
+    let finalText = "";
+    
+    // This will hold the final cell after it's created
+    let cell;
+
+    // const patimokkhaColor = Color.dynamic(new Color("#fd7e14"), new Color("#ff9f0a"));
+    const patimokkhaColor = Color.dynamic(new Color("#6f42c1"), new Color("#bf5af2"));
+
+    // First, determine the final string and create the cell
+    if (dateString.includes("  ")) {
+        // Case 1: The string has a description (e.g., "🌕 15th  01.01.2025")
+        const parts = dateString.split("  ", 2);
+        const descriptionText = parts[0];
+        const dayText = parts[1];
+
+        // Check if it's a Pātimokkha day
+        if (descriptionText.includes("14th") || descriptionText.includes("15th")) {
+          // Add the ☸️ icon and format the text
+          finalText = `${descriptionText}   ${dayText}`;
+          cell = row.addText(finalText);
+          
+          // Apply special formatting: bold font and a different color
+          cell.titleFont = Font.boldSystemFont(20);
+          cell.titleColor = patimokkhaColor;
+
+        } else {
+          // It's a regular quarter moon day
+          finalText = `${dayText} ${descriptionText}`;
+          cell = row.addText(finalText);
+          cell.titleFont = Font.systemFont(17);
+        }
+    } else {
+        // Case 2: The string is just a date (this is a fallback)
+        finalText = dateString;
+        cell = row.addText(finalText);
+        cell.titleFont = Font.systemFont(17);
+    }
+    
+    // Finally, apply right alignment to all rows
+    cell.rightAligned();
+    
+    return row;
+}
+
 function createMonthNamesLocale(locale = "") {
   // Return an array of month names in locale format
   // getval: (0,1,2,3,4,5)  = (weekday,date,month,year,str,array)
@@ -504,6 +720,7 @@ function createMonthNamesLocale(locale = "") {
   }
   return Array.from(ob.values());
 }
+
 
 function localeIt(dateobj, getval, monthformat = "short", locale = "") {
   // Display date time in locale format
@@ -3042,4 +3259,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 // Do not edit anything beyond this line, it is used for compare new version update
-//thisAppVersion=4
+//thisAppVersion=5
