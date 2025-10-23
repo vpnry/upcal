@@ -148,119 +148,6 @@ const upCAL = {
     );
     return widget;
   },
-  
-  async createWholeYearTable22() {
-    let cddt = new Date();
-    let cDeviceYear = cddt.getFullYear();
-    let cDeviceMonth = cddt.getMonth();
-
-    let alex = new Alert();
-    alex.title = "View Uposatha Dates";
-    alex.message = "Enter a year to display the calendar.";
-    alex.addTextField("e.g., " + cDeviceYear, `${cDeviceYear}`);
-    alex.addCancelAction("Cancel");
-    alex.addAction("View");
-
-    let idx = await alex.presentAlert();
-    if (idx == -1) {
-      log("Cancelled");
-      return;
-    }
-    let thisYear = Number(alex.textFieldValue(0));
-    if (!isNumber(thisYear) || thisYear < minLT || thisYear > maxUT) {
-      log(`Invalid year input. Using current year: ${cDeviceYear}`);
-      thisYear = cDeviceYear;
-    }
-
-    let table = new UITable();
-    table.showSeparators = true;
-
-    // Main Title Header
-    let titleRow = new UITableRow();
-    titleRow.isHeader = true;
-    titleRow.addText(`Myanmar Uposatha Dates in ${thisYear}`, "Calculated dates are for reference only.").centerAligned();
-    table.addRow(titleRow);
-
-    // Loop through each month to build the table
-    for (let i = 0; i < 12; i++) {
-        // Force 'isWidget = true' to get consistent, icon-rich date strings for parsing
-        let uposathaDates = getUpoDatesOfAMonth(thisYear, i, true)
-                                .filter(d => d.trim() !== "");
-
-        if (uposathaDates.length === 0) continue;
-
-        // Add a styled header for the current month
-        let monthRow = new UITableRow();
-        monthRow.isHeader = true;
-        // Highlight the current month
-        monthRow.backgroundColor = (i === cDeviceMonth) ? new Color("#007AFF") : new Color("#555555");
-        
-        let monthCell = monthRow.addText(u_iMonths[i]);
-        monthCell.titleColor = Color.white();
-        monthCell.leftAligned();
-        table.addRow(monthRow);
-
-        // Add a beautifully formatted row for each Uposatha date in the month
-        for (const dateString of uposathaDates) {
-            table.addRow(createDateRow(dateString));
-        }
-    }
-
-    // Add legend and credits at the end for completeness
-    // let legendRow = new UITableRow();
-    // legendRow.addText("Legend", `🌕 Full Moon\n🔵 New Moon\n🌓 Waxing Quarter\n🌗 Waning Quarter\n${icon_vs}${icon_next} Vassa Event`).leftAligned();
-    // table.addRow(legendRow);
-
-    // let creditRow = new UITableRow();
-    // creditRow.addText("Credits", `SunCalc (V. Agafonkin), MMCal (Y. N. Aye)\nUpcal v${thisAppVersion} by Cuong DANG`).leftAligned();
-    // table.addRow(creditRow);
-
-    // Add a distinct header for the legend
-    let legendHeaderRow = new UITableRow();
-    legendHeaderRow.isHeader = true;
-    legendHeaderRow.backgroundColor = new Color("#555555");
-    let legendHeaderCell = legendHeaderRow.addText("Legend");
-    legendHeaderCell.titleColor = Color.white();
-    legendHeaderCell.leftAligned();
-    table.addRow(legendHeaderRow);
-
-    // Add each legend item as its own clean, formatted row
-    table.addRow(createLegendRow("🌕", "Full Moon"));
-    table.addRow(createLegendRow("🔵", "New Moon"));
-    table.addRow(createLegendRow("🌓", "Waxing Quarter"));
-    table.addRow(createLegendRow("🌗", "Waning Quarter"));
-    table.addRow(createLegendRow(`${icon_vs}${icon_next}`, "Vassa Event (Next Day)"));
-
-    // --- CREDITS SECTION ---
-    // Add a distinct header for the credits
-    let creditHeaderRow = new UITableRow();
-    creditHeaderRow.isHeader = true;
-    creditHeaderRow.backgroundColor = new Color("#555555");
-    let creditHeaderCell = creditHeaderRow.addText("Credits");
-    creditHeaderCell.titleColor = Color.white();
-    creditHeaderCell.leftAligned();
-    table.addRow(creditHeaderRow);
-
-    // Add credits in simple, easy-to-read rows
-    let creditRow1 = new UITableRow();
-    creditRow1.addText("Libs: SunCalc (V. Agafonkin), MMCal (Y. N. Aye)").leftAligned();
-    table.addRow(creditRow1);
-    
-    let creditRow2 = new UITableRow();
-    creditRow2.addText(`App: Upcal v${thisAppVersion} by Cuong DANG`).leftAligned();
-    table.addRow(creditRow2);
-
-    let creditRow3 = new UITableRow();
-    creditRow3.addText(`https://github.com/vpnry/upcal`).leftAligned();
-    table.addRow(creditRow3);
-
-    if (config.runsWithSiri) {
-      Speech.speak(`Uposatha Dates in ${thisYear}`);
-    }
-
-    if (table) table.present();
-    return table;
-  },
 
   async createWholeYearTable() {
     let cddt = new Date();
@@ -350,6 +237,10 @@ const upCAL = {
     let creditRow2 = new UITableRow();
     creditRow2.addText(`App: Upcal v${thisAppVersion} by Cuong DANG`).leftAligned();
     table.addRow(creditRow2);
+
+    let creditRow3 = new UITableRow();
+    creditRow3.addText(`https://github.com/vpnry/upcal`).leftAligned();
+    table.addRow(creditRow3);
 
     if (config.runsWithSiri) {
       Speech.speak(`Uposatha Dates in ${thisYear}`);
