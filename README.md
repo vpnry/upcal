@@ -1,67 +1,76 @@
-Upcal - Uposatha calendar and dawn time
-----------------------------------------------
+# upoCal – Myanmar Uposatha Calendar & Dawn-rise
 
+![upocal_uposatha](docs/upocal_uposatha.webp)
 
-## 1. Info
+<a href="https://apps.apple.com/us/app/upocal/id6772249000"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" height="40"></a>
+<a href="https://play.google.com/store/apps/details?id=org.tipitakapali.upcal"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="40"></a>
 
-Upcal has has three variants: HTML, Android app, and iOS widget (via Scriptable app).
+**upoCal** is a free and open-source app for calculating highly accurate solar times and viewing Uposatha dates.
 
-1. 🌅 [upCal HTML](https://vpnry.github.io/upcal/upcal_offline.html)
+All calculations are performed directly on your device.
 
-2. 🌅 upCal **Android app** DOWNLOAD APK from [upCal Android releases](https://github.com/vpnry/upcal-android/releases)
+## Screenshots
 
-3. 🌅 iOS widget [read instructions](https://vpnry.github.io/upcal/#1-install-scriptable)
+![upoCal_01](docs/upoCal_01.webp)
 
+![upoCal_02](docs/upoCal_02.webp)
 
-### Functions
+![upoCal_03](docs/upoCal_03.webp)
 
-+ Designed for Buddhists or ones who care about dawn-rise, noon time and Uposatha dates (Myanmar Uposatha dates).
+![upoCal_04](docs/upoCal_04.webp)
 
-+ It shows calculated **Myanmar uposatha dates** for the current device month & dawn-rise timetable for the current date and location.
+![upoCal_05](docs/upoCal_05.webp)
 
-+ List a whole year Uposatha dates of any year.
+![upoCal_06](docs/upoCal_06.webp)
 
-+ Dawn-rise time table for a whole month (Android and HTML only, iOS widget not yet).
+### Accurate Solar Time Calculations
 
-### iOS widget
+Optional down-to-the-second precision for:
 
-![Upcal_Uposatha_Calendar_IOS](docs/img_Upcal_Uposatha_Calendar_IOS.jpeg)
+• Solar noon
 
-+ Whole year Uposatha dates:
+• Sunrise and sunset
 
-![Whole Year Uposatha Calendar](docs/img_Upcal_Whole_Year_Uposatha_Calendar_IOS.jpeg)
+• Civil dawn and dusk
 
-### Android and HTML 
+• Nautical dawn and dusk
 
-Main screen on Android:
-![Upcal_Uposatha_Calendar_HTML](docs/upcal_html_main.jpg)
+### Dawn-rise (Aruṇuggamana)
 
-Dawn-rise time table for a whole month:
-![Upcal_Uposatha_Calendar_HTML](docs/upcal_html_dawn_rise.jpg)
+• Multiple calculation formulas available
 
+• Adjustable according to individual preferences and traditions
 
-## 2. Dev
-+ Reduce screenshot file size: `jpegoptim --size=150k ./*.jpg`
+### Myanmar Uposatha Calendar
 
-+ Upcal-Android [source code](https://github.com/vpnry/upcal-android)
+• View Myanmar Uposatha dates years into the future or past
+• Monthly timetable view
+• Yearly calendar view
 
-+ Source code files for iOS widget (run on Scriptable) are in the [docs](https://github.com/vpnry/upcal/tree/main/docs).
+### Features
 
-+ TODO: re-organise the very very messy Javascript code and add dawn-rise timetable for iOS widget.
+• Home Screen widgets and lock screen widgets in various sizes
 
+• Battery-efficient widget updates
 
-## 3. Open Source Libraries Acknowledgements 
+• Adjustable dawn-rise(Aruṇuggamana) calculation methods
 
-+ Myanmar uposatha dates: powered by the algorithm of Modern Myanmar Calendrical Calculations - [MMCal](https://github.com/yan9a/mmcal) (Yan Naing Aye)  (MIT License)
+• GPS-based dawn-rise, noon time calculations
 
-+ Dawn time, sunrise calculations:  powered by [SunCalc](https://github.com/mourner/suncalc) (Vladimir Agafonkin) (MIT License)
+• Support manual location input
 
-+ Scriptable Widget and table UI is based on this [Coronavirus Scriptable Widget](https://gist.github.com/planecore/e7b4c1e5db2dd28b1a023860e831355e) (03 Oct 2020)
-  
+• Satellite and street map location preview (Internet connection required)
 
-## 4. Feedback
+• Dark Mode support
 
-+ If you found bugs or errors related to this project, you may open a [new Git issue](https://github.com/vpnry/upcal/issues/new/choose) or contact us via this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSe9zXQVbkIynNwZAYlpc-C5QVCfYJ08pclcy8kuDtTgVk40YQ/viewform?usp=sf_link).
+• Optional display of times down to the second
 
+• Multilingual support
 
-+ May you all be well and happy! 
+• No account required
+
+• No advertisements
+
+• Open source
+
+Designed for practitioners, monastics, and anyone who wishes to follow solar times and Myanmar Uposatha observances with precision.
